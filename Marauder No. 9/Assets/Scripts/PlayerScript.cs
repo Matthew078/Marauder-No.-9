@@ -57,12 +57,15 @@ public class PlayerScript : MonoBehaviour
                     if (gun)
                     {
                         gun.transform.parent = null;
-                        gun.transform.position = this.transform.position;
+                        gun.transform.position = this.transform.position + new Vector3(0, 1, 0);
+                        gun.GetComponent<Rigidbody>().isKinematic = false;
                     }
                     //set new gun
                     gun = colliders[i].gameObject;
                     colliders[i].gameObject.transform.parent = this.transform;
+                    gun.GetComponent<Rigidbody>().isKinematic = true;
                     gun.transform.position = this.transform.position + new Vector3(0, 3, 0);
+                    gun.transform.rotation = Quaternion.identity;
                     break;
                 }
                 i++;

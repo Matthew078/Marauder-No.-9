@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 6225058516598709207}
   - component: {fileID: 6225058516598709200}
   - component: {fileID: 6225058516598709204}
-  m_Layer: 0
+  - component: {fileID: -6610012631069656539}
+  m_Layer: 7
   m_Name: greenGun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -93,7 +94,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6225058516598709201}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -114,3 +115,19 @@ MonoBehaviour:
   bulletBaseForce: 1000
   bulletRange: 20
   fireRate: 0.25
+--- !u!54 &-6610012631069656539
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225058516598709201}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
