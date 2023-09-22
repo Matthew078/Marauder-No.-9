@@ -40,6 +40,31 @@ public class PlayerScript : MonoBehaviour
                 gun.GetComponent<GunScript>().FireGun(playerDirection, rb.velocity.x);
             }
         }
+
+        //Swapping Guns
+        if (Input.GetKeyDown("e"))
+        {
+            //get colliders of immediate vicinity
+            Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(1f, 1f, 1f));
+            int i = 0;
+            while (i < colliders.Length)
+            {
+                if (colliders[i].gameObject.tag == "Weapon")
+                {
+                    //get rid of old gun
+                    if (gun)
+                    {
+                        gun.transform.parent = null;
+                        gun.transform.position = this.transform.position;
+                    }
+                    //set new gun
+                    gun = colliders[i].gameObject;
+                    colliders[i].gameObject.transform.parent = this.transform;
+                    gun.transform.position = this.transform.position + new Vector3(0, 3, 0);
+                }
+                i++;
+            }
+        }
     }
 
     void FixedUpdate()
