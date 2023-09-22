@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6225058516598709200}
   - component: {fileID: 6225058516598709204}
   m_Layer: 0
-  m_Name: red
+  m_Name: redGun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,6 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 8075074341407092906, guid: 936db73c99a11ec4199758d27e5a3352, type: 3}
-  bulletBaseForce: 500
-  bulletRange: 10
-  fireRate: 0.5
+  bulletBaseForce: 300
+  bulletRange: 30
+  fireRate: 1
