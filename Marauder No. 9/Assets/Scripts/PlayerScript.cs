@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -45,7 +46,8 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyDown("e"))
         {
             //get colliders of immediate vicinity
-            Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(1f, 1f, 1f));
+            Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(.5f, .5f, .5f));
+            colliders = colliders.OrderBy(c => (transform.position - c.transform.position).sqrMagnitude).ToArray();  //order colliders by proximity
             int i = 0;
             while (i < colliders.Length)
             {
@@ -61,6 +63,7 @@ public class PlayerScript : MonoBehaviour
                     gun = colliders[i].gameObject;
                     colliders[i].gameObject.transform.parent = this.transform;
                     gun.transform.position = this.transform.position + new Vector3(0, 3, 0);
+                    break;
                 }
                 i++;
             }
