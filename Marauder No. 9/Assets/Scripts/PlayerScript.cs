@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public float moveForce;
+    public float jumpForce;
+    private bool isHovering;
     private float horizontalKey;
     private bool playerDirection;
 
@@ -17,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerDirection = true;
+        isHovering = false;
     }
 
     // Start is called before the first frame update
@@ -28,10 +31,10 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Player input
+        //Horizontal Movement input
         horizontalKey = Input.GetAxis("Horizontal");
 
-        //Firing Gun
+        //Firing Gun and Hovering Input
         if (horizontalKey < 0) { playerDirection = false; }
         else if (horizontalKey > 0) { playerDirection = true; }
         if (Input.GetButton("Fire1"))
@@ -40,9 +43,18 @@ public class PlayerScript : MonoBehaviour
             { 
                 gun.GetComponent<GunScript>().FireGun(playerDirection, rb.velocity.x);
             }
+
+            if (!isGrounded() && rb.velocity.y < 1)
+            {
+                isHovering = true;
+            }
+        }
+        else
+        {
+            isHovering = false;
         }
 
-        //Swapping Guns
+        //Swapping Guns input
         if (Input.GetKeyDown("e"))
         {
             //get colliders of immediate vicinity
@@ -71,6 +83,15 @@ public class PlayerScript : MonoBehaviour
                 i++;
             }
         }
+
+        //Jumping input
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (isGrounded())
+            {
+                rb.AddForce(Vector3.up * jumpForce);
+            }
+        }
     }
 
     void FixedUpdate()
@@ -78,5 +99,28 @@ public class PlayerScript : MonoBehaviour
         // Horizontal Force
         Vector2 force = new Vector2(horizontalKey, 0f).normalized * moveForce;
         rb.AddForce(force);
+
+        //Hovering Force
+        if (isHovering)
+        {
+            rb.AddForce(Vector3.up * 9.5f);
+        }
+    }
+
+    //Checks if player is grounded
+    bool isGrounded()
+    {
+        Collider[] colliders = Physics.OverlapBox(transform.position - new Vector3(0, .5f, 0), new Vector3(.5f, .5f, .5f));
+        int i = 0;
+
+        while (i < colliders.Length)
+        {
+            if (colliders[i].gameObject.tag == "Ground")
+            {
+                return true;
+            }
+            i++;
+        }
+        return false;
     }
 }
