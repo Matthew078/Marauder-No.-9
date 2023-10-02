@@ -6,6 +6,7 @@ public class ShieldScript : MonoBehaviour
 {
     [SerializeField] private MeshRenderer shieldMesh;
     [SerializeField] private float regenRate = .25f;
+    public List<GameObject> bullets = new List<GameObject>();
     //These Variables are only public for testing purposes
     public float shieldTimer;              //Time the shield has spent On, used for reflecting mechanic
     public float shieldHealth;          
@@ -41,6 +42,8 @@ public class ShieldScript : MonoBehaviour
             deactivateShield();
         }
         healthbar.transform.localScale = new Vector3(shieldHealth / 10, 1f, 1f);
+
+        reflectBullets();
     }
 
     private void FixedUpdate()
@@ -67,6 +70,26 @@ public class ShieldScript : MonoBehaviour
     {
         deactivateShield();
         isBroken = true;
+    }
+
+    private void reflectBullets()
+    {
+        foreach(GameObject bullet in new List<GameObject>(bullets))
+        {
+            if (shieldOn)
+            {
+                bullets.Remove(bullet);
+                if (shieldTimer < .25f)
+                {
+                    Rigidbody rb = bullet.gameObject.GetComponent<Rigidbody>();
+                    rb.velocity = new Vector3(-rb.velocity.x, -rb.velocity.y, -rb.velocity.z);
+                }
+                else
+                {
+                    Destroy(bullet);
+                }
+            }
+        }
     }
 
     private void updateShieldStats()
@@ -103,22 +126,19 @@ public class ShieldScript : MonoBehaviour
         }
     }
 
-    //BUG: Trigger box only detects colliders when the shield is activated before the bullet enters the sheild(due to onTriggerEnter)
-    //This can mitigated by using onTriggerStay, but a variable in a bullet called "Reflected" would need to exist so the shield only flips the velocity once.
     private void OnTriggerEnter(Collider other)
     {
-        //Reflect bullet if Timer < .25, otherwise delete bullet
-        if (other.gameObject.tag == "Bullet" && shieldOn)
+        if (other.gameObject.tag == "Bullet")
         {
-            if (shieldTimer < .25f)
-            {
-                Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-                rb.velocity = new Vector3(-rb.velocity.x, -rb.velocity.y, -rb.velocity.z);
-            }
-            else
-            {
-                Destroy(other.gameObject);
-            }
+            bullets.Add(other.gameObject);
+        }
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Bullet" && bullets.Contains(other.gameObject))
+        {
+            bullets.Remove(other.gameObject);
         }
     }
 }
