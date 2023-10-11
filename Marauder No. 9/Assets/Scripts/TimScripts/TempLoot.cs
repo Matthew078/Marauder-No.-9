@@ -23,7 +23,7 @@ public class TempLoot : MonoBehaviour
     {
         if (falling)
         {
-            Collider[] cols = Physics.OverlapBox(this.transform.position + Vector3.down/2, this.transform.localScale / 2);
+            Collider[] cols = Physics.OverlapBox(this.transform.position, this.transform.localScale / 2);
             int i = 0;
             while (i < cols.Length)
             {
