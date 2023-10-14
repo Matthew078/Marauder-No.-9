@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Bullet
   - Loot
+  - Enemy
   layers:
   - Default
   - TransparentFX
