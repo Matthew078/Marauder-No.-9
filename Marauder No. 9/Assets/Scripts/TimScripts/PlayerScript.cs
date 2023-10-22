@@ -77,7 +77,7 @@ public class PlayerScript : MonoBehaviour
                     colliders[i].gameObject.transform.parent = this.transform;
                     gun.GetComponent<Rigidbody>().isKinematic = true;
                     gun.transform.position = this.transform.position + new Vector3(0, 3, 0);
-                    gun.transform.rotation = Quaternion.identity;
+                    gun.transform.rotation = Quaternion.Euler(0 ,0 ,0);
                     break;
                 }
                 i++;

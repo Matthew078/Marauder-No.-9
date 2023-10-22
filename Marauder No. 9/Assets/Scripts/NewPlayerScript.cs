@@ -37,6 +37,10 @@ public class NewPlayerScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (pi.inputFire && gun)
+        {
+            gun.GetComponent<GunScript>().FireGun(true, rb.velocity.x);
+        }
         if (pi.inputInteract)
         {
             swapGun();
@@ -65,7 +69,7 @@ public class NewPlayerScript : MonoBehaviour
                 colliders[i].gameObject.transform.parent = this.transform;
                 gun.GetComponent<Rigidbody>().isKinematic = true;
                 gun.transform.position = this.transform.position + new Vector3(0, 3, 0);
-                gun.transform.rotation = Quaternion.identity;
+                //gun.transform.rotation = Quaternion.identity;
                 break;
             }
             i++;
