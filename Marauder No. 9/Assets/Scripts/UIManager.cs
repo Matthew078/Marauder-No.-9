@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text healthText;
     public Slider healthSlider;
     public TMP_Text bullets;
+    public TMP_Text armorText;
+    public Slider armorSlider;
 
     
     // Start is called before the first frame update
@@ -41,6 +43,20 @@ public class UIManager : MonoBehaviour
         if (healthSlider)
         {
             healthSlider.value = health;
+        }
+    }
+
+    void setArmor(float armor)
+    {
+        if (armorText)
+        {
+            string text = "HEALTH  " + (armor * 100).ToString();
+            armorText.text = text;
+        }
+
+        if (armorSlider)
+        {
+            armorSlider.value = armor;
         }
     }
 }
