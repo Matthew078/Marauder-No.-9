@@ -6,6 +6,7 @@ public class ShieldScript : MonoBehaviour
 {
     [SerializeField] private MeshRenderer shieldMesh;
     [SerializeField] private float regenRate = .25f;
+    [SerializeField] private NewPlayerScript p;
     public List<GameObject> bullets = new List<GameObject>();
     //These Variables are only public for testing purposes
     public float shieldTimer;              //Time the shield has spent On, used for reflecting mechanic
@@ -15,7 +16,7 @@ public class ShieldScript : MonoBehaviour
     public float delayIfBroken;            //Amount of Time the shield is broken
 
     //TEMPORARY TEST OBJECTS, NEED TO BE DELETED
-    public GameObject healthbar;
+    //public GameObject healthbar;
     
     // Start is called before the first frame update
     void Start()
@@ -33,15 +34,15 @@ public class ShieldScript : MonoBehaviour
     void Update()
     {
         //TEST CODE (WILL BE DELETED)
-        if (Input.GetKeyDown("q"))
+        if (p.pi.inputDefenseDown)
         {
             deployShield();
         }
-        if (Input.GetKeyUp("q"))
+        if (p.pi.inputDefenseUp)
         {
             deactivateShield();
         }
-        healthbar.transform.localScale = new Vector3(shieldHealth / 10, 1f, 1f);
+        //healthbar.transform.localScale = new Vector3(shieldHealth / 10, 1f, 1f);
 
         reflectBullets();
     }

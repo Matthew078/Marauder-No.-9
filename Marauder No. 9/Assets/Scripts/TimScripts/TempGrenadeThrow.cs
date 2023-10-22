@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TempGrenadeThrow : MonoBehaviour
 {
+    [SerializeField] private NewPlayerScript p;
     public List<GameObject> grenade_list = new List<GameObject>();
     public GameObject grenade;
     public float throwForce = 100;
@@ -27,7 +28,7 @@ public class TempGrenadeThrow : MonoBehaviour
         }
 
         //TEST CODE
-        if (Input.GetKeyDown("f"))
+        if (p.pi.inputGrenade)
         {
             onClick();
         }
@@ -68,8 +69,8 @@ public class TempGrenadeThrow : MonoBehaviour
 
     void throwGrenade()
     {
-        GameObject clone = Instantiate(grenade, this.transform.position + this.transform.forward, Quaternion.identity);
+        GameObject clone = Instantiate(grenade, this.transform.position + this.transform.right, Quaternion.identity);
         grenade_list.Add(clone);
-        clone.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce);
+        clone.GetComponent<Rigidbody>().AddForce(transform.right * throwForce);
     }
 }
