@@ -20,4 +20,12 @@ public class BulletScript : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<TempEnemy>().health -= 1;
+        }
+    }
 }

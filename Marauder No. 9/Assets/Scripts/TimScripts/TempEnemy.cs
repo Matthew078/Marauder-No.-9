@@ -13,6 +13,7 @@ public class TempEnemy : MonoBehaviour
     [SerializeField] private Transform pointB;
     [SerializeField] private Transform currentTarget;
     [SerializeField] private float speed = 3.5f;
+    public float health = 1;
     [SerializeField] private State currentState;
 
     //tempvariable since gunscript is broken right now
@@ -61,6 +62,11 @@ public class TempEnemy : MonoBehaviour
                 attack();
                 break;
         }
+
+        if (health <= 0)
+        {
+            die();
+        }
     }
 
     void attack()
@@ -88,5 +94,10 @@ public class TempEnemy : MonoBehaviour
     void idle()
     {
         agent.speed = 0;
+    }
+
+    void die()
+    {
+        Destroy(this.gameObject);
     }
 }
