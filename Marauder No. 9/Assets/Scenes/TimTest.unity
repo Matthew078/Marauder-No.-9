@@ -429,7 +429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6225058516598709205, guid: d8f29cd1116b7644ba5576d83edd4f47, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 6225058516598709205, guid: d8f29cd1116b7644ba5576d83edd4f47, type: 3}
       propertyPath: m_LocalPosition.z
@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 271935373}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -607,6 +607,7 @@ MonoBehaviour:
   pointB: {fileID: 358117881}
   currentTarget: {fileID: 0}
   speed: 3.5
+  health: 1
   currentState: 0
 --- !u!1 &295223386
 GameObject:

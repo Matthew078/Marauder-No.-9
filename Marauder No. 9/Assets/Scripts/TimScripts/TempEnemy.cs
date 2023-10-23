@@ -21,7 +21,6 @@ public class TempEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").transform;
         currentState = State.Patrol;
         agent = GetComponent<NavMeshAgent>();
 
@@ -41,7 +40,7 @@ public class TempEnemy : MonoBehaviour
             facingForwards = false;
         }
 
-        if (Vector3.Distance(player.position, transform.position) <= 10)
+        if (Vector3.Distance(player.position, transform.position) <= 3)
         {
             currentState = State.Attack;
         }
