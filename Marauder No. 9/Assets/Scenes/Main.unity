@@ -1966,7 +1966,7 @@ GameObject:
   - component: {fileID: 116868119}
   m_Layer: 0
   m_Name: Plane (15)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8847,6 +8847,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Catwalk Long (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4910352700272845603, guid: b76f846b3379607468a593969b575654, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 8250113047921840432, guid: b76f846b3379607468a593969b575654, type: 3}
       propertyPath: m_RootOrder
       value: 73
@@ -9476,7 +9480,7 @@ GameObject:
   - component: {fileID: 855089042}
   m_Layer: 0
   m_Name: Plane (12)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11305,7 +11309,7 @@ GameObject:
   - component: {fileID: 1007663355}
   m_Layer: 0
   m_Name: Cube (15)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16990,7 +16994,7 @@ GameObject:
   - component: {fileID: 1522406063}
   m_Layer: 0
   m_Name: Cube (17)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17694,7 +17698,7 @@ GameObject:
   - component: {fileID: 1584621784}
   m_Layer: 0
   m_Name: Cube (16)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19693,7 +19697,7 @@ GameObject:
   - component: {fileID: 1778912715}
   m_Layer: 0
   m_Name: Plane (11)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20407,6 +20411,10 @@ PrefabInstance:
     - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Name
       value: Crate Long (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921675115321883647, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 6661276281829707555, guid: e2fdcaac11701fe438724a8a8b3a76c5, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -23320,7 +23328,7 @@ GameObject:
   - component: {fileID: 2048822089}
   m_Layer: 0
   m_Name: Plane (13)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
