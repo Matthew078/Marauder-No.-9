@@ -6,15 +6,21 @@ using UnityEngine;
 
 public class NewPlayerScript : MonoBehaviour
 {
-    //scripts
+    [Header("Player Scripts")]
     [SerializeField]
     private PlayerInputScript playerInputScript;
     [SerializeField]
     private PlayerMovementScript playerMovementScript;
     [SerializeField]
     private GroundCheck groundCheck;
+    [Header("Health Settings")]
+    [SerializeField]
+    private int health;
+    [Header("Objects")]
     [SerializeField]
     private GameObject gun;
+    [SerializeField]
+    private UIManager uiManager;
 
     public PlayerInputScript pi { get { return playerInputScript; } }
     public GroundCheck gc { get { return groundCheck; } }
@@ -45,6 +51,7 @@ public class NewPlayerScript : MonoBehaviour
         {
             swapGun();
         }
+        uiManager.SetHealth(health/100);
     }
 
     private void swapGun()

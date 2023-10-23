@@ -16,8 +16,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        setHealth(0.5f);
-        setBullets(30);
+        //SetHealth(0.5f);
+        //SetBullets(30);
     }
 
     // Update is called once per frame
@@ -26,13 +26,13 @@ public class UIManager : MonoBehaviour
            
     }
 
-    void setBullets(int bullets)
+    public void SetBullets(int bullets)
     {
         string text = "BULLETS  " + bullets.ToString();
         this.bullets.text = text;
     }
 
-    void setHealth(float health)
+    public void SetHealth(float health)
     {
         if (healthText)
         {
@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void setArmor(float armor)
+    public void SetArmor(float armor)
     {
         if (armorText)
         {
