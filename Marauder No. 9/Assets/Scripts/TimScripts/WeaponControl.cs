@@ -10,8 +10,6 @@ public class WeaponControl : MonoBehaviour
     [SerializeField]
     private NewPlayerScript p;
     [SerializeField]
-    private GameObject player;
-    [SerializeField]
     private Rigidbody playerRB;
 
     private bool facingForwards;
@@ -19,8 +17,7 @@ public class WeaponControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = player.GetComponent<Rigidbody>();
-        p = player.GetComponent<NewPlayerScript>();
+        playerRB = p.gameObject.GetComponent<Rigidbody>();
         facingForwards = true;
     }
 
@@ -82,7 +79,7 @@ public class WeaponControl : MonoBehaviour
     {
         //set new gun
         gun = newGun;
-        newGun.gameObject.transform.parent = player.transform;
+        newGun.gameObject.transform.parent = p.gameObject.transform;
         gun.GetComponent<Rigidbody>().isKinematic = true;
         gun.transform.position = this.transform.position + new Vector3(0, 3, 0);
         //gun.transform.rotation = Quaternion.identity;
