@@ -16,8 +16,8 @@ public class ShieldScript : MonoBehaviour
     public bool isBroken;
     public float delayIfBroken;            //Amount of Time the shield is broken
 
-    //TEMPORARY TEST OBJECTS, NEED TO BE DELETED
-    //public GameObject healthbar;
+    private Rigidbody playerRB;
+    private bool facingForwards;
     
     // Start is called before the first frame update
     void Start()
@@ -29,12 +29,27 @@ public class ShieldScript : MonoBehaviour
         shieldOn = false;
         isBroken = false;
         delayIfBroken = 0f;
+
+        facingForwards = true;
+        playerRB = p.gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //TEST CODE (WILL BE DELETED)
+        //Update Direction
+        if (playerRB.velocity.x < 0 && facingForwards)
+        {
+            this.transform.position += new Vector3(-2, 0, 0);
+            facingForwards = false;
+        }
+        else if (playerRB.velocity.x > 0 && !facingForwards)
+        {
+            this.transform.position += new Vector3(2, 0, 0);
+            facingForwards = true;
+        }
+
+        //Input
         if (p.pi.inputDefenseDown)
         {
             deployShield();
@@ -83,9 +98,9 @@ public class ShieldScript : MonoBehaviour
 
     private void reflectBullets()
     {
-        foreach(GameObject bullet in new List<GameObject>(bullets))
+        if (shieldOn)
         {
-            if (shieldOn)
+            foreach (GameObject bullet in new List<GameObject>(bullets))
             {
                 bullets.Remove(bullet);
                 if (shieldTimer < .25f)
