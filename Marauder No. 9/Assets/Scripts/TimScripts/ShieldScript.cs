@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShieldScript : MonoBehaviour
 {
     [SerializeField] private MeshRenderer shieldMesh;
+    [SerializeField] private Material shieldMat;
     [SerializeField] private float regenRate = .25f;
     [SerializeField] private NewPlayerScript p;
     public List<GameObject> bullets = new List<GameObject>();
@@ -42,14 +43,21 @@ public class ShieldScript : MonoBehaviour
         {
             deactivateShield();
         }
-        //healthbar.transform.localScale = new Vector3(shieldHealth / 10, 1f, 1f);
 
+        updateMatAlpha();
         reflectBullets();
     }
 
     private void FixedUpdate()
     {
         updateShieldStats();
+    }
+
+    void updateMatAlpha()
+    {
+        Color color = shieldMat.color;
+        color.a = (shieldHealth / 100);
+        shieldMat.color = color;
     }
     public void deployShield()
     {
