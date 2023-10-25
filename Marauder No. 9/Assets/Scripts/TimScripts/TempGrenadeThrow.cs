@@ -5,29 +5,45 @@ using UnityEngine;
 public class TempGrenadeThrow : MonoBehaviour
 {
     [SerializeField] private NewPlayerScript p;
-    public List<GameObject> grenade_list = new List<GameObject>();
-    public GameObject grenade;
-    public float throwForce = 100;
-    public float throwDelay = 1;
+    [SerializeField] private List<GameObject> grenade_list = new List<GameObject>();
+    [SerializeField] private GameObject grenade;
+    [SerializeField] private float throwForce = 100;
+    [SerializeField] private float throwDelay = 1;
+    [SerializeField] private float grenadeDuration = 3;
     public float throwTimer;
-    public float grenadeDuration = 3;
-
+    private Rigidbody playerRB;
+    private bool facingForwards;
+    
     // Start is called before the first frame update
     void Start()
     {
         throwTimer = throwDelay + 1;
+        playerRB = p.gameObject.GetComponent<Rigidbody>();
+        facingForwards = true;
     }
 
     // Update is called once per frame
     void Update()
     { 
         timeOutGrenades();
+
+        //Update Direction
+        if (playerRB.velocity.x < 0)
+        {
+            facingForwards = false;
+        }
+        else if (playerRB.velocity.x > 0)
+        {
+            facingForwards = true;
+        }
+
+        //UpdateTimer
         if (throwTimer <= throwDelay)
         {
             throwTimer += Time.deltaTime;
         }
 
-        //TEST CODE
+        //Input
         if (p.pi.inputGrenade)
         {
             onClick();
@@ -69,8 +85,18 @@ public class TempGrenadeThrow : MonoBehaviour
 
     void throwGrenade()
     {
-        GameObject clone = Instantiate(grenade, this.transform.position + this.transform.right, Quaternion.identity);
-        grenade_list.Add(clone);
-        clone.GetComponent<Rigidbody>().AddForce(transform.right * throwForce);
+        
+        if (facingForwards)
+        {
+            GameObject clone = Instantiate(grenade, this.transform.position + Vector3.right, Quaternion.identity);
+            grenade_list.Add(clone);
+            clone.GetComponent<Rigidbody>().AddForce(Vector3.right * throwForce);
+        }
+        else
+        {
+            GameObject clone = Instantiate(grenade, this.transform.position - Vector3.right, Quaternion.identity);
+            grenade_list.Add(clone);
+            clone.GetComponent<Rigidbody>().AddForce(-Vector3.right * throwForce);
+        }
     }
 }
