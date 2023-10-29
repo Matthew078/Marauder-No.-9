@@ -41,7 +41,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (gun) 
             { 
-                gun.GetComponent<GunScript>().FireGun(playerDirection, rb.velocity.x);
+                //gun.GetComponent<GunScript>().FireGun(playerDirection, rb.velocity.x);
             }
 
             if (!isGrounded() && rb.velocity.y < 1)

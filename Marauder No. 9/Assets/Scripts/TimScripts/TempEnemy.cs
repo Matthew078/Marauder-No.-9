@@ -99,7 +99,7 @@ public class TempEnemy : MonoBehaviour
         agent.stoppingDistance = range/2;
         agent.speed = speed/2;
         agent.destination = player.position;
-        gun.FireGun(facingForwards, agent.velocity.x);
+        gun.FireGun(facingForwards, agent.velocity.x, "Bullet");
     }
 
     void patrol()

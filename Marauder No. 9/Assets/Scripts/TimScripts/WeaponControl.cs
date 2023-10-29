@@ -35,7 +35,7 @@ public class WeaponControl : MonoBehaviour
 
         if (p.pi.inputFire && gun)
         {
-            gun.GetComponent<GunScript>().FireGun(facingForwards, playerRB.velocity.x);
+            gun.GetComponent<GunScript>().FireGun(facingForwards, playerRB.velocity.x, "PlayerBullet");
         }
 
         if (p.pi.inputInteract)
@@ -81,7 +81,7 @@ public class WeaponControl : MonoBehaviour
         gun = newGun;
         newGun.gameObject.transform.parent = p.gameObject.transform;
         gun.GetComponent<Rigidbody>().isKinematic = true;
-        gun.transform.position = this.transform.position + new Vector3(0, 3, 0);
+        gun.transform.position = this.transform.position + new Vector3(0, 0, 0);
         //gun.transform.rotation = Quaternion.identity;
     }
 }

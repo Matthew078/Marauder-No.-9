@@ -24,7 +24,7 @@ public class GunScript : MonoBehaviour
         }
     }
 
-    public void FireGun(bool forward, float playerVelocity)
+    public void FireGun(bool forward, float playerVelocity, string bulletTag)
     {
         //Control Rate of Fire
         if (fireTimer < fireRate)
@@ -53,6 +53,7 @@ public class GunScript : MonoBehaviour
 
         //Instantiate bullet and set variables
         GameObject clone = Instantiate(bullet, initialPosition, Quaternion.identity);
+        clone.gameObject.tag = bulletTag;
         clone.GetComponent<Rigidbody>().AddForce(bulletForce);
         clone.GetComponent<BulletScript>().range = bulletRange + Mathf.Abs(playerVelocity) * 1.5f;           //Scale Range with player velocity or else range will appear shorter
         clone.GetComponent<BulletScript>().initialPosition = initialPosition;
