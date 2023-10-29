@@ -13,6 +13,9 @@ public class TempEnemy : MonoBehaviour
     [SerializeField] private Transform pointB;
     [SerializeField] private Transform currentTarget;
     [SerializeField] private float speed = 3.5f;
+    [SerializeField] private float range = 8;
+    [SerializeField] private float idleDelay = 3.5f;
+    [SerializeField] private float idleTimer;
     public float health = 1;
     [SerializeField] private State currentState;
 
@@ -23,6 +26,7 @@ public class TempEnemy : MonoBehaviour
     {
         currentState = State.Patrol;
         agent = GetComponent<NavMeshAgent>();
+        idleTimer = 0f;
 
         currentTarget = pointA;
         agent.destination = currentTarget.position;
@@ -40,11 +44,11 @@ public class TempEnemy : MonoBehaviour
             facingForwards = false;
         }
 
-        if (Vector3.Distance(player.position, transform.position) <= 3)
+        if (Vector3.Distance(player.position, transform.position) <= range)
         {
             currentState = State.Attack;
         }
-        else
+        else if (currentState == State.Attack)
         {
             currentState = State.Patrol;
         }
@@ -70,6 +74,7 @@ public class TempEnemy : MonoBehaviour
 
     void attack()
     {
+        agent.stoppingDistance = range/2;
         agent.speed = speed/2;
         agent.destination = player.position;
         gun.FireGun(facingForwards, agent.velocity.x);
@@ -77,15 +82,17 @@ public class TempEnemy : MonoBehaviour
 
     void patrol()
     {
+        agent.stoppingDistance = 0f;
         agent.speed = speed;
         if (agent.remainingDistance == 0 && currentTarget == pointB)
         {
             currentTarget = pointA;
-            
+            currentState = State.Idle;
         }
         else if (agent.remainingDistance == 0)
         {
             currentTarget = pointB;
+            currentState = State.Idle;
         }
         agent.destination = currentTarget.position;
     }
@@ -93,10 +100,17 @@ public class TempEnemy : MonoBehaviour
     void idle()
     {
         agent.speed = 0;
+        idleTimer += Time.deltaTime;
+        if (idleTimer > idleDelay)
+        {
+            idleTimer = 0;
+            currentState = State.Patrol;
+        }
     }
 
     void die()
     {
+
         Destroy(this.gameObject);
     }
 }
