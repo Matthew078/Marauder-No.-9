@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum State { Idle, Patrol, Attack };
+public enum State { Idle, Patrol, Attack, Stunned };
 public class TempEnemy : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private Rigidbody rb;
     [SerializeField] private GunScript gun;
+    [SerializeField] private TempLootSplash lootSplash;
     [SerializeField] private Transform player;
     [SerializeField] private Transform pointA;
     [SerializeField] private Transform pointB;
@@ -16,7 +18,9 @@ public class TempEnemy : MonoBehaviour
     [SerializeField] private float range = 8;
     [SerializeField] private float idleDelay = 3.5f;
     [SerializeField] private float idleTimer;
-    public float health = 1;
+    [SerializeField] private float stunDelay = 1f;
+    [SerializeField] private float stunTimer;
+    public float health = 100;
     [SerializeField] private State currentState;
 
     //tempvariable since gunscript is broken right now
@@ -26,7 +30,10 @@ public class TempEnemy : MonoBehaviour
     {
         currentState = State.Patrol;
         agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
+        lootSplash = GetComponent<TempLootSplash>();
         idleTimer = 0f;
+        stunTimer = 0f;
 
         currentTarget = pointA;
         agent.destination = currentTarget.position;
@@ -44,15 +51,17 @@ public class TempEnemy : MonoBehaviour
             facingForwards = false;
         }
 
-        if (Vector3.Distance(player.position, transform.position) <= range)
+        //Update state
+        if (Vector3.Distance(player.position, transform.position) <= range && !(currentState == State.Stunned))
         {
             currentState = State.Attack;
         }
-        else if (currentState == State.Attack)
+        else if (currentState == State.Attack && !(currentState == State.Stunned))
         {
             currentState = State.Patrol;
         }
 
+        //Different States
         switch(currentState)
         {
             case State.Idle:
@@ -64,6 +73,9 @@ public class TempEnemy : MonoBehaviour
             case State.Attack:
                 attack();
                 break;
+            case State.Stunned:
+                stunned();
+                break;
         }
 
         if (health <= 0)
@@ -72,6 +84,16 @@ public class TempEnemy : MonoBehaviour
         }
     }
 
+    public void grenadeHit(Vector3 explosionCenter, float explosionForce, float explosionRadius)
+    {
+        health -= 34;
+        agent.enabled = false;
+        rb.isKinematic = false;
+        rb.inertiaTensor = new Vector3(0, 0, 0);
+        rb.AddExplosionForce(explosionForce, explosionCenter, explosionRadius);
+        currentState = State.Stunned;
+        stunTimer = 0f;
+    }
     void attack()
     {
         agent.stoppingDistance = range/2;
@@ -108,9 +130,21 @@ public class TempEnemy : MonoBehaviour
         }
     }
 
+    void stunned()
+    {
+        stunTimer += Time.deltaTime;
+        if (stunTimer > stunDelay)
+        {
+            agent.enabled = true;
+            rb.isKinematic = true;
+            agent.destination = currentTarget.position;
+            currentState = State.Patrol;
+        }
+    }
+
     void die()
     {
-
+        lootSplash.spawnLoot();
         Destroy(this.gameObject);
     }
 }

@@ -27,8 +27,7 @@ public class TempGrenade : MonoBehaviour
         {
             if (cols[i].gameObject.tag == "Enemy")
             {
-                //cols[i].gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, this.transform.position, explosionRadius);
-                cols[i].GetComponent<TempEnemy>().health -= 1;
+                cols[i].gameObject.GetComponent<TempEnemy>().grenadeHit(this.transform.position, explosionForce, explosionRadius);
             }
             i++;
         }

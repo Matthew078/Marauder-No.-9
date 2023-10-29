@@ -18,10 +18,7 @@ public class TempLootSplash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("g"))
-        {
-            spawnLoot();
-        }
+
     }
 
     public void spawnLoot()
