@@ -13902,6 +13902,7 @@ GameObject:
   - component: {fileID: 1439443013}
   - component: {fileID: 1439443012}
   - component: {fileID: 1439443011}
+  - component: {fileID: 1439443017}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Enemy
@@ -13924,7 +13925,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   rb: {fileID: 0}
   gun: {fileID: 1139966188}
-  lootSplash: {fileID: 0}
+  lootSplash: {fileID: 1439443017}
   player: {fileID: 1945514040}
   pointA: {fileID: 574778348}
   pointB: {fileID: 1919923841}
@@ -14039,6 +14040,23 @@ Transform:
   m_Father: {fileID: 250905277}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1439443017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439443010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866674694dd5f1f48933798a5981e602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnAmount: 10
+  loot: {fileID: 1898058450096301277, guid: 7b9a4db9cc948e84a95f2f113f872e9a, type: 3}
+  explosionForce: 100
+  explosionRadius: 1
+  loot_list: []
 --- !u!4 &1449082720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8250113047921840432, guid: b76f846b3379607468a593969b575654, type: 3}
