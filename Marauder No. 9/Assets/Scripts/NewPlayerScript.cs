@@ -16,6 +16,8 @@ public class NewPlayerScript : MonoBehaviour
     [Header("Health Settings")]
     [SerializeField]
     private int health;
+    [SerializeField]
+    private int coins;
     [Header("Objects")]
     [SerializeField]
     private UIManager uiManager;
@@ -23,6 +25,7 @@ public class NewPlayerScript : MonoBehaviour
     public PlayerInputScript pi { get { return playerInputScript; } }
     public GroundCheck gc { get { return groundCheck; } }
     public Rigidbody rb { get; private set; }
+    public Animator a { get; private set; }
     //components
     
     //public new Animation ;
@@ -30,6 +33,7 @@ public class NewPlayerScript : MonoBehaviour
     private void Awake()
     {
        rb = GetComponent<Rigidbody>();
+       a = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -44,5 +48,12 @@ public class NewPlayerScript : MonoBehaviour
         uiManager.SetHealth(health / 100);
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Loot")
+        {
+            Destroy(other.gameObject);
+            coins += 1;
+        }
+    }
 }
