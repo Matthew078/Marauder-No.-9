@@ -2,37 +2,74 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum WeaponType { Auto, Semi, Burst };
 public class GunScript : MonoBehaviour
 {
     public GameObject bullet;
     [SerializeField] private float bulletBaseForce;
     [SerializeField] private float bulletRange;
     [SerializeField] private float fireRate;
+    [SerializeField] private int burstAmount = 3;
+    [SerializeField] private WeaponType type = WeaponType.Auto;
+    bool canFire;
+    bool bursting;
     float fireTimer;
-    // Start is called before the first frame update
+    int burstCount;
+    
     void Start()
     {
         fireTimer = 100;
+        canFire = true;
+        burstCount = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonUp("Fire1"))
+        {
+            canFire = true;
+        }
+
         if (fireTimer <= fireRate)
         {
             fireTimer += Time.deltaTime;
         }
     }
 
-    public void FireGun(bool forward, float playerVelocity, string bulletTag)
+    public void onClick(bool forward, float playerVelocity, string bulletTag)
     {
         //Control Rate of Fire
-        if (fireTimer < fireRate)
+        if (fireTimer > fireRate && canFire)
         {
-            return;
+            FireGun(forward, playerVelocity, bulletTag);
+            if (type == WeaponType.Auto)
+            {
+                canFire = true;
+            }
+            else if (type == WeaponType.Semi)
+            {
+                canFire = false;
+            }
+            else if (type == WeaponType.Burst)
+            {
+                burstCount += 1;
+                if (burstCount > burstAmount)
+                {
+                    burstCount = 0;
+                    canFire = false;
+                }
+                else
+                {
+                    canFire = true;
+                }
+            }
+            fireTimer = 0f;
         }
-        fireTimer = 0f;
+    }
 
+    public void FireGun(bool forward, float playerVelocity, string bulletTag)
+    {
         //Set bullet force and position based on player direction and speed
         Vector3 initialPosition;
         Vector3 bulletForce;

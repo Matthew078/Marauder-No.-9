@@ -23,7 +23,6 @@ public class TempEnemy : MonoBehaviour
     public float health = 100;
     [SerializeField] private State currentState;
 
-    //tempvariable since gunscript is broken right now
     bool facingForwards;
     // Start is called before the first frame update
     void Start()
@@ -99,7 +98,7 @@ public class TempEnemy : MonoBehaviour
         agent.stoppingDistance = range/2;
         agent.speed = speed/2;
         agent.destination = player.position;
-        gun.FireGun(facingForwards, agent.velocity.x, "Bullet");
+        gun.onClick(facingForwards, agent.velocity.x, "Bullet");
     }
 
     void patrol()
