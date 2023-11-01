@@ -26,15 +26,15 @@ public class GunScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonUp("Fire1"))
-        {
-            canFire = true;
-        }
-
         if (fireTimer <= fireRate)
         {
             fireTimer += Time.deltaTime;
         }
+    }
+
+    public void onFireUp()
+    {
+        canFire = true;
     }
 
     public void onClick(bool forward, float playerVelocity, string bulletTag)
