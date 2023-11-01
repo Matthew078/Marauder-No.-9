@@ -97,4 +97,9 @@ public class GunScript : MonoBehaviour
 
         
     }
+
+    public void switchToAuto()
+    {
+        type = WeaponType.Auto;
+    }
 }
