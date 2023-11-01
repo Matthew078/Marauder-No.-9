@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class ShieldScript : MonoBehaviour
@@ -29,7 +30,6 @@ public class ShieldScript : MonoBehaviour
         shieldOn = false;
         isBroken = false;
         delayIfBroken = 0f;
-
         facingForwards = true;
         playerRB = p.gameObject.GetComponent<Rigidbody>();
     }
@@ -70,7 +70,7 @@ public class ShieldScript : MonoBehaviour
 
     void updateMatAlpha()
     {
-        Color color = shieldMat.color;
+        UnityEngine.Color color = shieldMat.color;
         color.a = (shieldHealth / 100);
         shieldMat.color = color;
     }
@@ -150,6 +150,12 @@ public class ShieldScript : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        UnityEngine.Color color = shieldMat.color;
+        color.a = (1);
+        shieldMat.color = color;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Bullet")
