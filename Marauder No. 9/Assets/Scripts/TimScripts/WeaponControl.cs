@@ -38,6 +38,11 @@ public class WeaponControl : MonoBehaviour
             gun.GetComponent<GunScript>().onClick(facingForwards, playerRB.velocity.x, "PlayerBullet");
         }
 
+        if (p.pi.inputFireUp && gun)
+        {
+            gun.GetComponent<GunScript>().onFireUp();
+        }
+
         if (p.pi.inputInteract)
         {
             swapGun();
