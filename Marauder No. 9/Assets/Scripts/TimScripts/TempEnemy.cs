@@ -170,4 +170,13 @@ public class TempEnemy : MonoBehaviour
         lootSplash.spawnLoot();
         Destroy(this.gameObject);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+            health -= collision.gameObject.GetComponent<BulletScript>().damage;
+            Destroy(collision.gameObject);
+        }
+    }
 }

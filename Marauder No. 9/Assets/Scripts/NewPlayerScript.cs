@@ -55,5 +55,13 @@ public class NewPlayerScript : MonoBehaviour
             Destroy(other.gameObject);
             coins += 1;
         }
+
+        if(other.gameObject.tag == "Bullet")
+        {
+            health -= other.gameObject.GetComponent<BulletScript>().damage;
+            Destroy(other.gameObject);
+        }
     }
+
+    
 }

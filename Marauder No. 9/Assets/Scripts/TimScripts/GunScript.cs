@@ -9,6 +9,7 @@ public class GunScript : MonoBehaviour
     [SerializeField] private float bulletBaseForce;
     [SerializeField] private float bulletRange;
     [SerializeField] private float fireRate;
+    [SerializeField] private int damage = 10;
     [SerializeField] private int burstAmount = 3;
     [SerializeField] private WeaponType type = WeaponType.Auto;
     bool canFire;
@@ -92,10 +93,13 @@ public class GunScript : MonoBehaviour
         GameObject clone = Instantiate(bullet, initialPosition, Quaternion.identity);
         clone.gameObject.tag = bulletTag;
         clone.GetComponent<Rigidbody>().AddForce(bulletForce);
+
+        //EDIT BULLET SCRIPT
         clone.GetComponent<BulletScript>().range = bulletRange + Mathf.Abs(playerVelocity) * 1.5f;           //Scale Range with player velocity or else range will appear shorter
         clone.GetComponent<BulletScript>().initialPosition = initialPosition;
+        clone.GetComponent<BulletScript>().damage = damage;
 
-        
+
     }
 
     public void switchToAuto()
