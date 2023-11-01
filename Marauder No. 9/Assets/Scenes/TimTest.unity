@@ -1367,6 +1367,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1471741602374830, guid: 0814aba0a5f87494cb000251ab82361f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4543829338664524, guid: 0814aba0a5f87494cb000251ab82361f, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -2013,6 +2017,7 @@ MonoBehaviour:
   playerMovementScript: {fileID: 1345025485}
   groundCheck: {fileID: 2140777886}
   health: 0
+  coins: 0
   uiManager: {fileID: 0}
 --- !u!54 &676332961
 Rigidbody:
@@ -3460,6 +3465,7 @@ MonoBehaviour:
   playerMovementScript: {fileID: 1443874161}
   groundCheck: {fileID: 1105758677}
   health: 100
+  coins: 0
   uiManager: {fileID: 1013588220}
 --- !u!136 &1431992641
 CapsuleCollider:
@@ -3878,7 +3884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1683918998
 Transform:
   m_ObjectHideFlags: 0

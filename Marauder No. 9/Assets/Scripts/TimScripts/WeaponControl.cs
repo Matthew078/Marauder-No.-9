@@ -35,7 +35,7 @@ public class WeaponControl : MonoBehaviour
 
         if (p.pi.inputFire && gun)
         {
-            gun.GetComponent<GunScript>().FireGun(facingForwards, playerRB.velocity.x, "PlayerBullet");
+            gun.GetComponent<GunScript>().onClick(facingForwards, playerRB.velocity.x, "PlayerBullet");
         }
 
         if (p.pi.inputInteract)
