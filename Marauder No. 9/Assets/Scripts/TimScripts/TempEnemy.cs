@@ -20,6 +20,8 @@ public class TempEnemy : MonoBehaviour
     [SerializeField] private float idleTimer;
     [SerializeField] private float stunDelay = 1f;
     [SerializeField] private float stunTimer;
+    [SerializeField] private float shootDelay = 5f;
+    [SerializeField] private float shootTimer;
     public float health = 100;
     [SerializeField] private State currentState;
 
@@ -33,6 +35,7 @@ public class TempEnemy : MonoBehaviour
         lootSplash = GetComponent<TempLootSplash>();
         idleTimer = 0f;
         stunTimer = 0f;
+        shootTimer = 0f;
 
         currentTarget = pointA;
         agent.destination = currentTarget.position;
@@ -45,10 +48,22 @@ public class TempEnemy : MonoBehaviour
         {
             facingForwards = true;
         }
-        else
+        else if (agent.velocity.x < 0)
         {
             facingForwards = false;
         }
+
+        //Shoot Cooldown
+        if (shootTimer < shootDelay)
+        {
+            shootTimer += Time.deltaTime;
+        }
+        else
+        {
+            shootTimer = 0f;
+            gun.onFireUp();
+        }
+
 
         //Update state
         if (Vector3.Distance(player.position, transform.position) <= range && !(currentState == State.Stunned))
@@ -143,6 +158,9 @@ public class TempEnemy : MonoBehaviour
 
     void die()
     {
+        gun.transform.parent = null;
+        gun.transform.position = this.transform.position + new Vector3(0, 1, 0);
+        gun.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         lootSplash.spawnLoot();
         Destroy(this.gameObject);
     }

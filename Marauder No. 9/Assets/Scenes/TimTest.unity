@@ -702,6 +702,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: greenGun (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6225058516598709204, guid: d8f29cd1116b7644ba5576d83edd4f47, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6225058516598709205, guid: d8f29cd1116b7644ba5576d83edd4f47, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -899,6 +903,8 @@ MonoBehaviour:
   idleTimer: 0
   stunDelay: 1
   stunTimer: 0
+  shootDelay: 5
+  shootTimer: 0
   health: 100
   currentState: 0
 --- !u!114 &271935374
@@ -3884,7 +3890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1683918998
 Transform:
   m_ObjectHideFlags: 0
