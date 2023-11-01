@@ -33,6 +33,7 @@ public class TempEnemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         lootSplash = GetComponent<TempLootSplash>();
+        gun.gameObject.tag = "EnemyWeapon";
         idleTimer = 0f;
         stunTimer = 0f;
         shootTimer = 0f;
@@ -158,9 +159,14 @@ public class TempEnemy : MonoBehaviour
 
     void die()
     {
+        //DROP GUN
         gun.transform.parent = null;
+        gun.gameObject.tag = "Weapon";
+        gun.switchToAuto();
         gun.transform.position = this.transform.position + new Vector3(0, 1, 0);
         gun.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+
+        //SPAWN LOOT AND DELETE
         lootSplash.spawnLoot();
         Destroy(this.gameObject);
     }

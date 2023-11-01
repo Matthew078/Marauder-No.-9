@@ -285,6 +285,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: redGun
       objectReference: {fileID: 0}
+    - target: {fileID: 6225058516598709201, guid: 40508a0458781734cbe705579f07e147, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6225058516598709205, guid: 40508a0458781734cbe705579f07e147, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3712,6 +3716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: blueGun
       objectReference: {fileID: 0}
+    - target: {fileID: 6225058516598709201, guid: dbae77f5eb91e244e834ea6cb5b55e92, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6225058516598709205, guid: dbae77f5eb91e244e834ea6cb5b55e92, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4796,6 +4804,10 @@ PrefabInstance:
     - target: {fileID: 6225058516598709201, guid: d8f29cd1116b7644ba5576d83edd4f47, type: 3}
       propertyPath: m_Name
       value: greenGun (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225058516598709201, guid: d8f29cd1116b7644ba5576d83edd4f47, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6225058516598709205, guid: d8f29cd1116b7644ba5576d83edd4f47, type: 3}
       propertyPath: m_RootOrder
