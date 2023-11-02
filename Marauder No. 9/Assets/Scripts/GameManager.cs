@@ -31,18 +31,23 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void loadLevel(string levelName)
+    public void LoadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
     }
-    public void nextLevel()
+    public void NextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void quitGame()
+    public void QuitGame()
     {
         Debug.Log("quit game");
         Application.Quit();
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Main");    
     }
 }
