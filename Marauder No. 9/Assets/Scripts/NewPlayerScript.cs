@@ -45,6 +45,15 @@ public class NewPlayerScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (rb.velocity.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(transform.rotation.x, 90, transform.rotation.z);
+        }
+        else if (rb.velocity.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(transform.rotation.x, 270, transform.rotation.z);
+        }
+
         uiManager.SetHealth(health / 100);
     }
 
@@ -55,5 +64,13 @@ public class NewPlayerScript : MonoBehaviour
             Destroy(other.gameObject);
             coins += 1;
         }
+
+        if(other.gameObject.tag == "Bullet")
+        {
+            health -= other.gameObject.GetComponent<BulletScript>().damage;
+            Destroy(other.gameObject);
+        }
     }
+
+    
 }

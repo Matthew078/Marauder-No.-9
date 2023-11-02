@@ -18,24 +18,14 @@ public class WeaponControl : MonoBehaviour
     void Start()
     {
         playerRB = p.gameObject.GetComponent<Rigidbody>();
-        facingForwards = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(playerRB.velocity.x < 0)
-        {
-            facingForwards = false;
-        }
-        else if (playerRB.velocity.x > 0)
-        {
-            facingForwards = true;
-        }
-
         if (p.pi.inputFire && gun)
         {
-            gun.GetComponent<GunScript>().onClick(facingForwards, playerRB.velocity.x, "PlayerBullet");
+            gun.GetComponent<GunScript>().onClick(playerRB.velocity.x, "PlayerBullet");
         }
 
         if (p.pi.inputFireUp && gun)
@@ -87,6 +77,6 @@ public class WeaponControl : MonoBehaviour
         newGun.gameObject.transform.parent = p.gameObject.transform;
         gun.GetComponent<Rigidbody>().isKinematic = true;
         gun.transform.position = this.transform.position + new Vector3(0, 0, 0);
-        //gun.transform.rotation = Quaternion.identity;
+        gun.transform.rotation = this.transform.rotation;
     }
 }

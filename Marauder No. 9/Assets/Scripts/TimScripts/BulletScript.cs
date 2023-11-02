@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+    public int damage;
     public float range;
     public Vector3 initialPosition;
     // Start is called before the first frame update
@@ -18,14 +19,6 @@ public class BulletScript : MonoBehaviour
         if (Vector3.Distance(initialPosition, this.transform.position) > range)
         {
             Destroy(this.gameObject);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            other.gameObject.GetComponent<TempEnemy>().health -= 1;
         }
     }
 }
