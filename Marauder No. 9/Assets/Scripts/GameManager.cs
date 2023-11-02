@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager gm = null;
+    [SerializeField]
+    private float sfxVolume, musicVolume;
 
     private void Awake()
     {
@@ -49,5 +51,25 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Main");    
+    }
+
+    public void SetMusicVolume(float mv)
+    {
+        musicVolume = mv;
+    }
+
+    public void SetSFXVolume(float sfxv)
+    {
+        sfxVolume = sfxv;
+    }
+
+    public float GetMusicVolume()
+    {
+        return musicVolume;
+    }
+
+    public float GetSFXVolume()
+    {
+        return sfxVolume;
     }
 }

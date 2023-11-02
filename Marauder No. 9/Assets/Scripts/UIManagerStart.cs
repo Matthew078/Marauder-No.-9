@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManagerStart : MonoBehaviour
 {
@@ -8,16 +9,25 @@ public class UIManagerStart : MonoBehaviour
     private Canvas canvasStart, canvasMain, canvasSettings, canvasCredits;
     [SerializeField]
     private GameManager gm;
+    [SerializeField]
+    private Slider sfxSlider, musicSlider;
+
     // Start is called before the first frame update
     void Start()
     {
         StartMenu();
+        sfxSlider.value = gm.GetSFXVolume();
+        musicSlider.value = gm.GetMusicVolume();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (canvasSettings.enabled)
+        {
+            gm.SetSFXVolume(sfxSlider.value);
+            gm.SetMusicVolume(musicSlider.value);
+        }
     }
 
     public void StartMenu()
@@ -54,5 +64,7 @@ public class UIManagerStart : MonoBehaviour
     {
         gm.StartGame();
     }
+
+    
 }
 
