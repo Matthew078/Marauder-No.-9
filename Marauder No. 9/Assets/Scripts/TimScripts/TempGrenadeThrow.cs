@@ -11,31 +11,17 @@ public class TempGrenadeThrow : MonoBehaviour
     [SerializeField] private float throwDelay = 1;
     [SerializeField] private float grenadeDuration = 3;
     public float throwTimer;
-    private Rigidbody playerRB;
-    private bool facingForwards;
     
     // Start is called before the first frame update
     void Start()
     {
         throwTimer = throwDelay + 1;
-        playerRB = p.gameObject.GetComponent<Rigidbody>();
-        facingForwards = true;
     }
 
     // Update is called once per frame
     void Update()
     { 
         timeOutGrenades();
-
-        //Update Direction
-        if (playerRB.velocity.x < 0)
-        {
-            facingForwards = false;
-        }
-        else if (playerRB.velocity.x > 0)
-        {
-            facingForwards = true;
-        }
 
         //UpdateTimer
         if (throwTimer <= throwDelay)
@@ -85,18 +71,8 @@ public class TempGrenadeThrow : MonoBehaviour
 
     void throwGrenade()
     {
-        
-        if (facingForwards)
-        {
-            GameObject clone = Instantiate(grenade, this.transform.position + Vector3.right, Quaternion.identity);
-            grenade_list.Add(clone);
-            clone.GetComponent<Rigidbody>().AddForce(Vector3.right * throwForce);
-        }
-        else
-        {
-            GameObject clone = Instantiate(grenade, this.transform.position - Vector3.right, Quaternion.identity);
-            grenade_list.Add(clone);
-            clone.GetComponent<Rigidbody>().AddForce(-Vector3.right * throwForce);
-        }
+        GameObject clone = Instantiate(grenade, this.transform.position + transform.right, Quaternion.identity);
+        grenade_list.Add(clone);
+        clone.GetComponent<Rigidbody>().AddForce(transform.right * throwForce);
     }
 }
