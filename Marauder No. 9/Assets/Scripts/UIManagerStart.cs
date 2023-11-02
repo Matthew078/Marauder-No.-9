@@ -16,6 +16,10 @@ public class UIManagerStart : MonoBehaviour
     void Start()
     {
         StartMenu();
+        sfxSlider.wholeNumbers = true;
+        musicSlider.wholeNumbers = true;
+        sfxSlider.maxValue = 10;
+        musicSlider.maxValue = 10;
         sfxSlider.value = gm.GetSFXVolume();
         musicSlider.value = gm.GetMusicVolume();
     }
