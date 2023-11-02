@@ -86,7 +86,7 @@ public class ShieldScript : MonoBehaviour
             foreach (GameObject bullet in new List<GameObject>(bullets))
             {
                 bullets.Remove(bullet);
-                if (shieldTimer < .25f)
+                if (shieldTimer < .25f && bullet)
                 {
                     Rigidbody rb = bullet.gameObject.GetComponent<Rigidbody>();
                     rb.velocity = new Vector3(-rb.velocity.x, -rb.velocity.y, -rb.velocity.z);
