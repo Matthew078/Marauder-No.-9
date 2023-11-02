@@ -47,11 +47,11 @@ public class NewPlayerScript : MonoBehaviour
     {
         if (rb.velocity.x > 0)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(transform.rotation.x, 90, transform.rotation.z);
         }
         else if (rb.velocity.x < 0)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(transform.rotation.x, 270, transform.rotation.z);
         }
 
         uiManager.SetHealth(health / 100);
