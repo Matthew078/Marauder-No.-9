@@ -45,15 +45,6 @@ public class TempEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (agent.velocity.x > 0)
-        {
-            facingForwards = true;
-        }
-        else if (agent.velocity.x < 0)
-        {
-            facingForwards = false;
-        }
-
         //Shoot Cooldown
         if (shootTimer < shootDelay)
         {
@@ -114,7 +105,7 @@ public class TempEnemy : MonoBehaviour
         agent.stoppingDistance = range/2;
         agent.speed = speed/2;
         agent.destination = player.position;
-        gun.onClick(facingForwards, agent.velocity.x, "Bullet");
+        gun.onClick(agent.velocity.x, "Bullet");
     }
 
     void patrol()

@@ -71,8 +71,8 @@ public class TempGrenadeThrow : MonoBehaviour
 
     void throwGrenade()
     {
-        GameObject clone = Instantiate(grenade, this.transform.position + transform.right, Quaternion.identity);
+        GameObject clone = Instantiate(grenade, this.transform.position + transform.forward, Quaternion.identity);
         grenade_list.Add(clone);
-        clone.GetComponent<Rigidbody>().AddForce(transform.right * throwForce);
+        clone.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce);
     }
 }
