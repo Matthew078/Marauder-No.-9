@@ -18,13 +18,11 @@ public class UIManagerStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartMenu();
         sfxSlider.wholeNumbers = true;
         musicSlider.wholeNumbers = true;
         sfxSlider.maxValue = 10;
         musicSlider.maxValue = 10;
-        sfxSlider.value = gm.GetSFXVolume();
-        musicSlider.value = gm.GetMusicVolume();
+        StartMenu();
     }
 
     // Update is called once per frame
@@ -105,6 +103,14 @@ public class UIManagerStart : MonoBehaviour
             if (slider != null)
             {
                 slider.enabled = b;
+                if(slider.gameObject.name == "MusicSlider")
+                {
+                    slider.value = gm.GetMusicVolume();
+                }
+                if (slider.gameObject.name == "SFXSlider")
+                {
+                    slider.value = gm.GetSFXVolume();
+                }
             }
             
         }
