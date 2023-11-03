@@ -10,18 +10,23 @@ public class GunScript : MonoBehaviour
     [SerializeField] private float bulletRange;
     [SerializeField] private float fireRate;
     [SerializeField] private int damage = 10;
-    [SerializeField] private int burstAmount = 3;
     [SerializeField] private WeaponType type = WeaponType.Auto;
     bool canFire;
-    bool bursting;
     float fireTimer;
-    int burstCount;
-    
+
+    //Burst Variables
+    [SerializeField] private int burstAmount = 3;
+    public int burstCount;
+    public bool bursting;
+    float tempPlayerVelocity;
+    string tempBulletTag;
+
     void Start()
     {
         fireTimer = 100;
         canFire = true;
         burstCount = 0;
+        bursting = false;
     }
 
     // Update is called once per frame
@@ -30,6 +35,10 @@ public class GunScript : MonoBehaviour
         if (fireTimer <= fireRate)
         {
             fireTimer += Time.deltaTime;
+        }
+        if(bursting)
+        {
+            burst();
         }
     }
 
@@ -41,7 +50,7 @@ public class GunScript : MonoBehaviour
     public void onClick(float playerVelocity, string bulletTag)
     {
         //Control Rate of Fire
-        if (fireTimer > fireRate && canFire)
+        if (fireTimer > fireRate && canFire && !bursting)
         {
             FireGun(playerVelocity, bulletTag);
             if (type == WeaponType.Auto)
@@ -55,15 +64,25 @@ public class GunScript : MonoBehaviour
             else if (type == WeaponType.Burst)
             {
                 burstCount += 1;
-                if (burstCount > burstAmount)
-                {
-                    burstCount = 0;
-                    canFire = false;
-                }
-                else
-                {
-                    canFire = true;
-                }
+                tempPlayerVelocity = playerVelocity;
+                tempBulletTag = bulletTag;
+                bursting = true;
+                canFire = false;
+            }
+            fireTimer = 0f;
+        }
+    }
+
+    void burst()
+    {
+        if (fireTimer > fireRate)
+        {
+            FireGun(tempPlayerVelocity, tempBulletTag);
+            burstCount += 1;
+            if (burstCount > burstAmount)
+            {
+                bursting = false;
+                burstCount = 0;
             }
             fireTimer = 0f;
         }
