@@ -153,7 +153,7 @@ public class TempEnemy : MonoBehaviour
         //DROP GUN
         gun.transform.parent = null;
         gun.gameObject.tag = "Weapon";
-        gun.switchToAuto();
+        //gun.switchToAuto();
         gun.transform.position = this.transform.position + new Vector3(0, 1, 0);
         gun.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
