@@ -1079,7 +1079,9 @@ MonoBehaviour:
   playerInputScript: {fileID: 705883573}
   playerMovementScript: {fileID: 705883572}
   groundCheck: {fileID: 1079754100}
-  gun: {fileID: 824016520}
+  health: 50
+  coins: 0
+  uiManager: {fileID: 263146456}
 --- !u!1 &705883570
 GameObject:
   m_ObjectHideFlags: 0
