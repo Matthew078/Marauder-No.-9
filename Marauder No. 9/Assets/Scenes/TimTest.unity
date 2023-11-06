@@ -4826,6 +4826,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6225058516598709204, guid: d8f29cd1116b7644ba5576d83edd4f47, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225058516598709204, guid: d8f29cd1116b7644ba5576d83edd4f47, type: 3}
+      propertyPath: fireRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225058516598709204, guid: d8f29cd1116b7644ba5576d83edd4f47, type: 3}
+      propertyPath: burstAmount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6225058516598709205, guid: d8f29cd1116b7644ba5576d83edd4f47, type: 3}
       propertyPath: m_RootOrder
       value: 4
