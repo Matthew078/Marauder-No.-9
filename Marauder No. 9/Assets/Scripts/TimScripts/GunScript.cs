@@ -5,7 +5,7 @@ using UnityEngine;
 public enum WeaponType { Auto, Semi, Burst };
 public class GunScript : MonoBehaviour
 {
-    public GameObject bullet;
+    [SerializeField] private GameObject bullet;
     public int ammo = 30;
     [SerializeField] private float bulletBaseForce;
     [SerializeField] private float bulletRange;
@@ -83,15 +83,22 @@ public class GunScript : MonoBehaviour
 
     void burst()
     {
-        if (fireTimer > fireRate)
+        if (fireTimer > fireRate && ammo > 0)
         {
             FireGun(tempPlayerVelocity, tempBulletTag);
             burstCount += 1;
+            ammo -= 1;
             if (burstCount > burstAmount)
             {
                 bursting = false;
                 burstCount = 0;
             }
+            fireTimer = 0f;
+        }
+        else if (ammo <= 0)
+        {
+            bursting = false;
+            burstCount = 0;
             fireTimer = 0f;
         }
     }
