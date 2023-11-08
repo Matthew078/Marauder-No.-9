@@ -7,6 +7,9 @@ public class TempGrenade : MonoBehaviour
     public float explosionForce = 100;
     public float explosionRadius = 5;
     public float timer = 0;
+
+    public GameObject explosionEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,8 @@ public class TempGrenade : MonoBehaviour
 
     public void detonate()
     {
+        Instantiate(explosionEffect, transform.position, transform.rotation);
+
         Collider[] cols = Physics.OverlapSphere(this.transform.position, 5f);
         int i = 0;
         while (i < cols.Length)
