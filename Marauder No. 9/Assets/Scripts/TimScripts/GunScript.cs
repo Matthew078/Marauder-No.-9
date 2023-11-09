@@ -105,6 +105,7 @@ public class GunScript : MonoBehaviour
 
     public void FireGun(float playerVelocity, string bulletTag)
     {
+        SoundManager.Instance.playSound("Amogus?!");
         //Set bullet force and position based on player direction and speed
         Vector3 initialPosition;
         Vector3 bulletForce;
