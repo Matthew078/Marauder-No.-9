@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //SetHealth(0.5f);
+        SetHealth(5);
         //SetBullets(30);
     }
 
@@ -32,11 +32,11 @@ public class UIManager : MonoBehaviour
         this.bullets.text = text;
     }
 
-    public void SetHealth(float health)
+    public void SetHealth(int health)
     {
         if (healthText)
         {
-            string text = "HEALTH  " + (health * 100).ToString();
+            string text = "HEALTH  " + health.ToString();
             healthText.text = text;
         }
 

@@ -54,7 +54,7 @@ public class NewPlayerScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.x, 270, transform.rotation.z);
         }
 
-        uiManager.SetHealth(health / 100);
+        uiManager.SetHealth(health);
     }
 
     private void OnTriggerEnter(Collider other)

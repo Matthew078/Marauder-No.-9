@@ -5,7 +5,8 @@ using UnityEngine;
 public enum WeaponType { Auto, Semi, Burst };
 public class GunScript : MonoBehaviour
 {
-    public GameObject bullet;
+    [SerializeField] private GameObject bullet;
+    public int ammo = 30;
     [SerializeField] private float bulletBaseForce;
     [SerializeField] private float bulletRange;
     [SerializeField] private float fireRate;
@@ -13,6 +14,12 @@ public class GunScript : MonoBehaviour
     [SerializeField] private WeaponType type = WeaponType.Auto;
     bool canFire;
     float fireTimer;
+
+    //On Death Variables
+    [SerializeField] private WeaponType typeOnDeath = WeaponType.Auto;
+    [SerializeField] private int ammoOnDeath = 20;
+    [SerializeField] private int damageOnDeath = 10;
+    [SerializeField] private float fireRateOnDeath = .25f;
 
     //Burst Variables
     [SerializeField] private int burstAmount = 3;
@@ -50,9 +57,10 @@ public class GunScript : MonoBehaviour
     public void onClick(float playerVelocity, string bulletTag)
     {
         //Control Rate of Fire
-        if (fireTimer > fireRate && canFire && !bursting)
+        if (fireTimer > fireRate && canFire && !bursting && ammo > 0)
         {
             FireGun(playerVelocity, bulletTag);
+            ammo -= 1;
             if (type == WeaponType.Auto)
             {
                 canFire = true;
@@ -75,10 +83,11 @@ public class GunScript : MonoBehaviour
 
     void burst()
     {
-        if (fireTimer > fireRate)
+        if (fireTimer > fireRate && ammo > 0)
         {
             FireGun(tempPlayerVelocity, tempBulletTag);
             burstCount += 1;
+            ammo -= 1;
             if (burstCount > burstAmount)
             {
                 bursting = false;
@@ -86,10 +95,17 @@ public class GunScript : MonoBehaviour
             }
             fireTimer = 0f;
         }
+        else if (ammo <= 0)
+        {
+            bursting = false;
+            burstCount = 0;
+            fireTimer = 0f;
+        }
     }
 
     public void FireGun(float playerVelocity, string bulletTag)
     {
+        SoundManager.Instance.playSound("Amogus?!");
         //Set bullet force and position based on player direction and speed
         Vector3 initialPosition;
         Vector3 bulletForce;
@@ -107,8 +123,11 @@ public class GunScript : MonoBehaviour
         clone.GetComponent<BulletScript>().damage = damage;
     }
 
-    public void switchToAuto()
+    public void onEnemyDeath()
     {
-        type = WeaponType.Auto;
+        type = typeOnDeath;
+        ammo = ammoOnDeath;
+        fireRate = fireRateOnDeath;
+        damage = damageOnDeath;
     }
 }

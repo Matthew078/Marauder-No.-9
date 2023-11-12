@@ -106,6 +106,7 @@ public class TempEnemy : MonoBehaviour
         agent.speed = speed/2;
         agent.destination = player.position;
         gun.onClick(agent.velocity.x, "Bullet");
+        gun.ammo = 30;
     }
 
     void patrol()
@@ -153,7 +154,7 @@ public class TempEnemy : MonoBehaviour
         //DROP GUN
         gun.transform.parent = null;
         gun.gameObject.tag = "Weapon";
-        //gun.switchToAuto();
+        gun.onEnemyDeath();
         gun.transform.position = this.transform.position + new Vector3(0, 1, 0);
         gun.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
