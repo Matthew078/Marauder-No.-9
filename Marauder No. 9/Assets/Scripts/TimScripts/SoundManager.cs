@@ -8,7 +8,9 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance;
 
     public Sound[] soundClips;
+    public Sound[] musicClips;
     public AudioSource source;
+    [SerializeField] private GameManager gm;
 
     private void Awake()
     {
@@ -33,7 +35,22 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            source.clip = soundClips[0].audio;
+            source.PlayOneShot(s.audio, gm.GetSFXVolume()/10);
+        }
+    }
+
+    public void playMusic(string musicName)
+    {
+        Sound s = Array.Find(musicClips, x => x.name == musicName);
+
+        if (s == null)
+        {
+            Debug.Log("No Music with name: " + musicName);
+        }
+        else
+        {
+            source.clip = s.audio;
+            source.volume = gm.GetMusicVolume()/10;
             source.Play();
         }
     }
