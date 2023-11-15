@@ -2595,7 +2595,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1945514040}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &200100474
 MonoBehaviour:
@@ -6145,6 +6145,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95028430175513588, guid: 0814aba0a5f87494cb000251ab82361f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2ce468188f0decf49b4d1abb25e915e8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0814aba0a5f87494cb000251ab82361f, type: 3}
 --- !u!4 &597655295 stripped
@@ -6280,7 +6284,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1945514040}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &605832364
 MonoBehaviour:
@@ -7260,7 +7264,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1945514040}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &763153792
 MonoBehaviour:
@@ -19183,12 +19187,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 8075074341407092906, guid: 936db73c99a11ec4199758d27e5a3352, type: 3}
+  ammo: 30
   bulletBaseForce: 150
   bulletRange: 10
   fireRate: 1
   damage: 10
-  burstAmount: 3
   type: 0
+  typeOnDeath: 0
+  ammoOnDeath: 20
+  damageOnDeath: 10
+  fireRateOnDeath: 0.25
+  burstAmount: 3
+  burstCount: 0
+  bursting: 0
 --- !u!54 &1925980177
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19379,6 +19390,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1945514044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945514038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ea3f213a069604fa636d0136613f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: {fileID: 1945514041}
 --- !u!1 &1947018802
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,8 +29,10 @@ public class PlayerAnimation : MonoBehaviour
         playerAnim.SetBool("jumping", isJumping);
 
         //Player Grenade Animations
+        /*
         bool grenadeRoll = p.pi.inputGrenade;
         if (grenadeRoll) { Debug.Log(grenadeRoll); }
-        playerAnim.SetTrigger("grenadeRoll");
+        playerAnim.SetBool("grenadeRoll", grenadeRoll);
+        */
     }
 }
