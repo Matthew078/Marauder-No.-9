@@ -16,6 +16,10 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthSlider.maxValue = 100;
+        healthSlider.wholeNumbers = true;
+        armorSlider.maxValue = 100;
+        armorSlider.wholeNumbers = true;
         SetHealth(5);
         //SetBullets(30);
     }

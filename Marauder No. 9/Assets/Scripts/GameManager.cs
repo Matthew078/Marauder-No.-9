@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager gm = null;
-    private float sfxVolume, musicVolume;
+    [SerializeField] private float sfxVolume, musicVolume;
 
     private void Awake()
     {
