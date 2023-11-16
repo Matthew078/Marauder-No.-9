@@ -601,7 +601,6 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
-<<<<<<< HEAD
   scriptingDefineSymbols:
     Android: UNITY_POST_PROCESSING_STACK_V2
     EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2
@@ -616,9 +615,6 @@ PlayerSettings:
     Windows Store Apps: UNITY_POST_PROCESSING_STACK_V2
     XboxOne: UNITY_POST_PROCESSING_STACK_V2
     tvOS: UNITY_POST_PROCESSING_STACK_V2
-=======
-  scriptingDefineSymbols: {}
->>>>>>> f1947fbbd78702bdd98c2a0dfe7fbfd906b48622
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
