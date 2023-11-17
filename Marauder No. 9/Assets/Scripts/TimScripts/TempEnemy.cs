@@ -95,7 +95,7 @@ public class TempEnemy : MonoBehaviour
         health -= 34;
         agent.enabled = false;
         rb.isKinematic = false;
-        rb.inertiaTensor = new Vector3(0, 0, 0);
+        //rb.inertiaTensor = new Vector3(0, 0, 0);
         rb.AddExplosionForce(explosionForce, explosionCenter, explosionRadius);
         currentState = State.Stunned;
         stunTimer = 0f;

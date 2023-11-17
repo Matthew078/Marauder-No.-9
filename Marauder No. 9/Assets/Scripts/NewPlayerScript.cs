@@ -13,6 +13,8 @@ public class NewPlayerScript : MonoBehaviour
     private PlayerMovementScript playerMovementScript;
     [SerializeField]
     private GroundCheck groundCheck;
+    [SerializeField]
+    private GameObject shield;
     [Header("Health Settings")]
     [SerializeField]
     private int health;
@@ -39,7 +41,7 @@ public class NewPlayerScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -47,6 +49,7 @@ public class NewPlayerScript : MonoBehaviour
     {
         if (rb.velocity.x > 1f)
         {
+            shield.transform.rotation = Quaternion.FromToRotation(transform.forward, transform.up);
             transform.rotation = Quaternion.Euler(transform.rotation.x, 90, transform.rotation.z);
         }
         else if (rb.velocity.x < -1f)

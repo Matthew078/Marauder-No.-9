@@ -53,8 +53,7 @@ public class ShieldScript : MonoBehaviour
 
     void updateMatAlpha()
     {
-        UnityEngine.Color color = shieldMat.color;
-        color.a = (shieldHealth / 100);
+        UnityEngine.Color color = new UnityEngine.Color(1f , (shieldHealth / 100), (shieldHealth / 100));
         shieldMat.color = color;
     }
     public void deployShield()
