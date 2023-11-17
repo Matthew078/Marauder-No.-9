@@ -3784,6 +3784,8 @@ MonoBehaviour:
   playerInputScript: {fileID: 1061425928}
   playerMovementScript: {fileID: 1061425925}
   groundCheck: {fileID: 285414044}
+  shield1: {fileID: 0}
+  shield2: {fileID: 0}
   health: 0
   coins: 0
   uiManager: {fileID: 0}
@@ -19963,6 +19965,8 @@ MonoBehaviour:
   playerInputScript: {fileID: 200100476}
   playerMovementScript: {fileID: 200100475}
   groundCheck: {fileID: 605832364}
+  shield1: {fileID: 763153790}
+  shield2: {fileID: 455458953}
   health: 100
   coins: 0
   uiManager: {fileID: 1561338204}

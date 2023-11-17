@@ -87,6 +87,7 @@ public class ShieldScript : MonoBehaviour
                 bullets.Remove(bullet);
                 if (shieldTimer < .25f && bullet)
                 {
+                    bullet.gameObject.tag = "PlayerBullet";
                     Rigidbody rb = bullet.gameObject.GetComponent<Rigidbody>();
                     rb.velocity = new Vector3(-rb.velocity.x, -rb.velocity.y, -rb.velocity.z);
                 }
