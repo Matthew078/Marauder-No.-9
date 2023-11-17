@@ -45,11 +45,11 @@ public class NewPlayerScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (rb.velocity.x > 0.5f)
+        if (rb.velocity.x > 1f)
         {
             transform.rotation = Quaternion.Euler(transform.rotation.x, 90, transform.rotation.z);
         }
-        else if (rb.velocity.x < -0.5f)
+        else if (rb.velocity.x < -1f)
         {
             transform.rotation = Quaternion.Euler(transform.rotation.x, 270, transform.rotation.z);
         }
