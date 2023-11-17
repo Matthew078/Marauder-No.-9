@@ -75,6 +75,7 @@ public class NewPlayerScript : MonoBehaviour
 
         if(other.gameObject.tag == "Bullet")
         {
+            SoundManager.Instance.playSound("Player_Damage");
             health -= other.gameObject.GetComponent<BulletScript>().damage;
             Destroy(other.gameObject);
         }

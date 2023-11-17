@@ -92,6 +92,7 @@ public class TempEnemy : MonoBehaviour
 
     public void grenadeHit(Vector3 explosionCenter, float explosionForce, float explosionRadius)
     {
+        SoundManager.Instance.playSound("Enemy_Damage");
         health -= 34;
         agent.enabled = false;
         rb.isKinematic = false;
@@ -167,6 +168,7 @@ public class TempEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerBullet")
         {
+            SoundManager.Instance.playSound("Enemy_Damage");
             health -= collision.gameObject.GetComponent<BulletScript>().damage;
             Destroy(collision.gameObject);
         }
