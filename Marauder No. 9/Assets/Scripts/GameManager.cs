@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        SoundManager.Instance.playMusic("Game");
         SceneManager.LoadScene("Main");    
     }
 
