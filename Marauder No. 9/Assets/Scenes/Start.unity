@@ -4289,8 +4289,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 462597244673512780}
     - target: {fileID: 9129157266974090970, guid: 5bcdb2ef6cfbc8842ac32306d82b46ca, type: 3}
+      propertyPath: musicClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129157266974090970, guid: 5bcdb2ef6cfbc8842ac32306d82b46ca, type: 3}
       propertyPath: soundClips.Array.size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129157266974090970, guid: 5bcdb2ef6cfbc8842ac32306d82b46ca, type: 3}
+      propertyPath: musicClips.Array.data[0].name
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129157266974090970, guid: 5bcdb2ef6cfbc8842ac32306d82b46ca, type: 3}
+      propertyPath: musicClips.Array.data[1].name
+      value: Game
       objectReference: {fileID: 0}
     - target: {fileID: 9129157266974090970, guid: 5bcdb2ef6cfbc8842ac32306d82b46ca, type: 3}
       propertyPath: soundClips.Array.data[2].name
@@ -4304,6 +4316,14 @@ PrefabInstance:
       propertyPath: soundClips.Array.data[4].name
       value: Player_Death
       objectReference: {fileID: 0}
+    - target: {fileID: 9129157266974090970, guid: 5bcdb2ef6cfbc8842ac32306d82b46ca, type: 3}
+      propertyPath: musicClips.Array.data[0].audio
+      value: 
+      objectReference: {fileID: 8300000, guid: 75b26081e04971747973be06399d2d08, type: 3}
+    - target: {fileID: 9129157266974090970, guid: 5bcdb2ef6cfbc8842ac32306d82b46ca, type: 3}
+      propertyPath: musicClips.Array.data[1].audio
+      value: 
+      objectReference: {fileID: 8300000, guid: 9bddce9cc1772e346aafdda789e2f970, type: 3}
     - target: {fileID: 9129157266974090970, guid: 5bcdb2ef6cfbc8842ac32306d82b46ca, type: 3}
       propertyPath: soundClips.Array.data[2].audio
       value: 

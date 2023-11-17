@@ -25,6 +25,15 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SoundManager.Instance.playMusic("Menu");
+    }
+
+    private void Update()
+    {
+        source.volume = gm.GetMusicVolume() / 10;
+    }
     public void playSound(string soundName)
     {
         Sound s = Array.Find(soundClips, x => x.name == soundName);
@@ -43,6 +52,7 @@ public class SoundManager : MonoBehaviour
     {
         Sound s = Array.Find(musicClips, x => x.name == musicName);
 
+        source.Stop();
         if (s == null)
         {
             Debug.Log("No Music with name: " + musicName);
@@ -50,7 +60,6 @@ public class SoundManager : MonoBehaviour
         else
         {
             source.clip = s.audio;
-            source.volume = gm.GetMusicVolume()/10;
             source.Play();
         }
     }
