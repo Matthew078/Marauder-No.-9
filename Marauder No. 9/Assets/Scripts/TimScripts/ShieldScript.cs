@@ -42,6 +42,14 @@ public class ShieldScript : MonoBehaviour
             deactivateShield();
         }
 
+        if (shieldOn)
+        {
+            SoundManager.Instance.playShieldSound();
+        }
+        else
+        {
+            SoundManager.Instance.stopShieldSound();
+        }
         updateMatAlpha();
         reflectBullets();
     }
@@ -74,6 +82,7 @@ public class ShieldScript : MonoBehaviour
 
     private void breakShield()
     {
+        SoundManager.Instance.playSound("Shield_Break");
         deactivateShield();
         isBroken = true;
     }

@@ -62,6 +62,19 @@ public class NewPlayerScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.x, 270, transform.rotation.z);
         }
 
+        if (Mathf.Abs(playerInputScript.inputHorizontal) > .1f && groundCheck.IsGrounded())
+        {
+            SoundManager.Instance.playStateSound("Player_Walk");
+        }
+        else if (playerInputScript.inputFire && !groundCheck.IsGrounded())
+        {
+            SoundManager.Instance.playStateSound("Hover");
+        }
+        else
+        {
+            SoundManager.Instance.stopStateSound();
+        }
+
         uiManager.SetHealth(health);
     }
 

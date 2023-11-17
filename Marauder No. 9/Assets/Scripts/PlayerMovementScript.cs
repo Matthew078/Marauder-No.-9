@@ -56,6 +56,7 @@ public class PlayerMovementScript : MonoBehaviour
         // jump mechanics       
         if (canJump)
         {
+            SoundManager.Instance.playSound("Player_Jump");
             canJump = false;
             p.rb.velocity = new Vector3(p.rb.velocity.x, jumpPower, 0f);
         }

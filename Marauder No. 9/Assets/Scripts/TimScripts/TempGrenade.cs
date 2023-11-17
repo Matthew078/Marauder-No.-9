@@ -25,7 +25,7 @@ public class TempGrenade : MonoBehaviour
     public void detonate()
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
-
+        SoundManager.Instance.playSound("Grenade_Explode");
         Collider[] cols = Physics.OverlapSphere(this.transform.position, 5f);
         int i = 0;
         while (i < cols.Length)

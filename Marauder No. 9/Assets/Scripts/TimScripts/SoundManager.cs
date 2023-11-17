@@ -9,7 +9,10 @@ public class SoundManager : MonoBehaviour
 
     public Sound[] soundClips;
     public Sound[] musicClips;
-    public AudioSource source;
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
+    public AudioSource sfxStateSource;
+    public AudioSource sfxShield;
     [SerializeField] private GameManager gm;
 
     private void Awake()
@@ -32,7 +35,9 @@ public class SoundManager : MonoBehaviour
 
     private void Update()
     {
-        source.volume = gm.GetMusicVolume() / 10;
+        musicSource.volume = gm.GetMusicVolume() / 10;
+        sfxStateSource.volume = gm.GetSFXVolume() / 10;
+        sfxShield.volume = gm.GetSFXVolume() / 10;
     }
     public void playSound(string soundName)
     {
@@ -44,7 +49,7 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            source.PlayOneShot(s.audio, gm.GetSFXVolume()/10);
+            sfxSource.PlayOneShot(s.audio, gm.GetSFXVolume()/10);
         }
     }
 
@@ -52,16 +57,57 @@ public class SoundManager : MonoBehaviour
     {
         Sound s = Array.Find(musicClips, x => x.name == musicName);
 
-        source.Stop();
+        musicSource.Stop();
         if (s == null)
         {
             Debug.Log("No Music with name: " + musicName);
         }
         else
         {
-            source.clip = s.audio;
-            source.Play();
+            musicSource.clip = s.audio;
+            musicSource.Play();
         }
+    }
+
+    public void playStateSound(string soundName)
+    {
+        Sound s = Array.Find(soundClips, x => x.name == soundName);
+        
+
+        if (s == null)
+        {
+            Debug.Log("No Sound with name: " + soundName);
+        }
+        else if (!sfxStateSource.isPlaying)
+        {
+            sfxStateSource.clip = s.audio;
+            sfxStateSource.Play();
+        }
+    }
+
+    public void stopStateSound()
+    {
+        sfxStateSource.Stop();
+    }
+
+    public void playShieldSound()
+    {
+        Sound s = Array.Find(soundClips, x => x.name == "Shield");
+
+        if (s == null)
+        {
+            Debug.Log("No Sound with name: " + "Shield");
+        }
+        else if (!sfxShield.isPlaying)
+        {
+            sfxShield.clip = s.audio;
+            sfxShield.Play();
+        }
+    }
+
+    public void stopShieldSound()
+    {
+        sfxShield.Stop();
     }
 }
 

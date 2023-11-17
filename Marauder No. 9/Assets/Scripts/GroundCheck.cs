@@ -10,7 +10,7 @@ public class GroundCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isGrounded = false;   
+        isGrounded = true;   
     }
 
     // Update is called once per frame
@@ -19,6 +19,13 @@ public class GroundCheck : MonoBehaviour
             
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Ground" && !isGrounded)
+        {
+            SoundManager.Instance.playSound("Player_Land");
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Ground")

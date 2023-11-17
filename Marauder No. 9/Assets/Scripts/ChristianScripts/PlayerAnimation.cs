@@ -25,7 +25,7 @@ public class PlayerAnimation : MonoBehaviour
 
         //Player Jump Animations
         bool isJumping = !p.gc.IsGrounded();
-        if (isJumping) { Debug.Log(isJumping); }
+        //if (isJumping) { Debug.Log(isJumping); }
         playerAnim.SetBool("jumping", isJumping);
 
         //Player Grenade Animations

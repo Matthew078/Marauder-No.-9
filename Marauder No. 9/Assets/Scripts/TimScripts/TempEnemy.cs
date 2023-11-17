@@ -152,6 +152,8 @@ public class TempEnemy : MonoBehaviour
 
     void die()
     {
+        SoundManager.Instance.playSound("Enemy_Death");
+
         //DROP GUN
         gun.transform.parent = null;
         gun.gameObject.tag = "Weapon";
