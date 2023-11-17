@@ -49,7 +49,7 @@ public class NewPlayerScript : MonoBehaviour
     {
         if (rb.velocity.x > 1f)
         {
-            shield.transform.rotation = Quaternion.FromToRotation(transform.forward, transform.up);
+            shield.transform.rotation = Quaternion.FromToRotation(Vector3.zero, transform.right) ;
             transform.rotation = Quaternion.Euler(transform.rotation.x, 90, transform.rotation.z);
         }
         else if (rb.velocity.x < -1f)
