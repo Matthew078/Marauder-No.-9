@@ -27,6 +27,7 @@ public class PlayerMovementScript : MonoBehaviour
     private void Start()
     {
         canJump = false;
+        p.rb.isKinematic = false;
     }
 
     // Update is called once per frame
@@ -36,6 +37,14 @@ public class PlayerMovementScript : MonoBehaviour
         if (p.gc.IsGrounded() && p.pi.inputVertical > 0.1f)
         {
             canJump = true;
+        }
+        if (!p.gc.IsGrounded() && p.pi.inputFire)
+        {
+            p.rb.isKinematic = true;
+        }
+        else
+        {
+            p.rb.isKinematic = false;
         }
     }
 
