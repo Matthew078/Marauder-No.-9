@@ -3784,7 +3784,6 @@ MonoBehaviour:
   playerInputScript: {fileID: 1061425928}
   playerMovementScript: {fileID: 1061425925}
   groundCheck: {fileID: 285414044}
-  shield: {fileID: 0}
   health: 0
   coins: 0
   uiManager: {fileID: 0}
@@ -5110,6 +5109,143 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3699100878489879237, guid: 2878502761c3c4cd185aa9849b4fdb45, type: 3}
   m_PrefabInstance: {fileID: 70282632}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &455458953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 455458954}
+  - component: {fileID: 455458958}
+  - component: {fileID: 455458957}
+  - component: {fileID: 455458956}
+  - component: {fileID: 455458955}
+  - component: {fileID: 455458959}
+  m_Layer: 6
+  m_Name: Shield (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &455458954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455458953}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0.066, y: 0.9910736, z: 0.839}
+  m_LocalScale: {x: 0.14, y: 1, z: 0.19}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1945514040}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
+--- !u!114 &455458955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455458953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e216689fc0cb6944b066671885a0942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldMesh: {fileID: 455458957}
+  shieldMat: {fileID: 2100000, guid: a0880fe2453b04f42977a022d22b8d32, type: 2}
+  regenRate: 0.25
+  p: {fileID: 1945514041}
+  bullets: []
+  shieldTimer: 0
+  shieldHealth: 800
+  shieldOn: 0
+  isBroken: 0
+  delayIfBroken: 0
+--- !u!65 &455458956
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455458953}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.585903, y: 0.943406, z: 10.095614}
+  m_Center: {x: 0.08417622, y: 0.028297963, z: 0.04279961}
+--- !u!23 &455458957
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455458953}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a0880fe2453b04f42977a022d22b8d32, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &455458958
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455458953}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &455458959
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455458953}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &461828606
 GameObject:
   m_ObjectHideFlags: 0
@@ -7329,6 +7465,7 @@ GameObject:
   - component: {fileID: 763153794}
   - component: {fileID: 763153793}
   - component: {fileID: 763153792}
+  - component: {fileID: 763153796}
   m_Layer: 6
   m_Name: Shield (1)
   m_TagString: Untagged
@@ -7369,7 +7506,7 @@ MonoBehaviour:
   p: {fileID: 1945514041}
   bullets: []
   shieldTimer: 0
-  shieldHealth: 0
+  shieldHealth: 800
   shieldOn: 0
   isBroken: 0
   delayIfBroken: 0
@@ -7436,6 +7573,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763153790}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &763153796
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763153790}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &770125927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2275631149302825729, guid: cc55393986bef4d3a8307ae8b90d9e96, type: 3}
@@ -13592,7 +13745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5621168011295140821, guid: ead18f01288c4664d969d87e69335a8f, type: 3}
       propertyPath: range
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5621168011295140821, guid: ead18f01288c4664d969d87e69335a8f, type: 3}
       propertyPath: player
@@ -19810,7 +19963,6 @@ MonoBehaviour:
   playerInputScript: {fileID: 200100476}
   playerMovementScript: {fileID: 200100475}
   groundCheck: {fileID: 605832364}
-  shield: {fileID: 763153790}
   health: 100
   coins: 0
   uiManager: {fileID: 1561338204}
