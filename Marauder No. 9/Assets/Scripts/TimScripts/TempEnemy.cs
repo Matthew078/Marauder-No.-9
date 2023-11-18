@@ -24,22 +24,30 @@ public class TempEnemy : MonoBehaviour
     [SerializeField] private float shootTimer;
     public float health = 100;
     [SerializeField] private State currentState;
+    private float deathTimer;
+    private Animator a;
 
     bool facingForwards;
+
+    private void Awake()
+    {
+        a = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
+        lootSplash = GetComponent<TempLootSplash>();
+    }
     // Start is called before the first frame update
     void Start()
     {
         currentState = State.Patrol;
-        agent = GetComponent<NavMeshAgent>();
-        rb = GetComponent<Rigidbody>();
-        lootSplash = GetComponent<TempLootSplash>();
         gun.gameObject.tag = "EnemyWeapon";
         idleTimer = 0f;
         stunTimer = 0f;
         shootTimer = 0f;
-
+        deathTimer = 0f;
         currentTarget = pointA;
         agent.destination = currentTarget.position;
+        a.SetBool("isDead", false);
     }
 
     // Update is called once per frame
@@ -152,18 +160,26 @@ public class TempEnemy : MonoBehaviour
 
     void die()
     {
-        SoundManager.Instance.playSound("Enemy_Death");
+        if (deathTimer < 1.5f)
+        {
+            a.SetBool("isDead", true);
+            deathTimer += Time.deltaTime;
+        }
+        else
+        {
+            SoundManager.Instance.playSound("Enemy_Death");
 
-        //DROP GUN
-        gun.transform.parent = null;
-        gun.gameObject.tag = "Weapon";
-        gun.onEnemyDeath();
-        gun.transform.position = this.transform.position + new Vector3(0, 1, 0);
-        gun.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            //DROP GUN
+            gun.transform.parent = null;
+            gun.gameObject.tag = "Weapon";
+            gun.onEnemyDeath();
+            gun.transform.position = this.transform.position + new Vector3(0, 1, 0);
+            gun.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
-        //SPAWN LOOT AND DELETE
-        lootSplash.spawnLoot();
-        Destroy(this.gameObject);
+            //SPAWN LOOT AND DELETE
+            lootSplash.spawnLoot();
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider collision)

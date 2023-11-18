@@ -8,18 +8,25 @@ public class UIManager : MonoBehaviour
 {
     public TMP_Text healthText;
     public Slider healthSlider;
-    public TMP_Text bullets;
+    public TMP_Text bulletText;
     public TMP_Text armorText;
     public Slider armorSlider;
+    public TMP_Text goldText;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        healthSlider.maxValue = 100;
-        healthSlider.wholeNumbers = true;
-        armorSlider.maxValue = 100;
-        armorSlider.wholeNumbers = true;
+        if (healthSlider)
+        {
+            healthSlider.maxValue = 100;
+            healthSlider.wholeNumbers = true;
+        }
+        if (armorSlider)
+        {
+            armorSlider.maxValue = 100;
+            armorSlider.wholeNumbers = true;
+        }
         SetHealth(5);
         //SetBullets(30);
     }
@@ -27,13 +34,16 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-           
+
     }
 
     public void SetBullets(int bullets)
     {
-        string text = "BULLETS  " + bullets.ToString();
-        this.bullets.text = text;
+        if (bulletText)
+        {
+            string text = "BULLETS  " + bullets.ToString();
+            this.bulletText.text = text;
+        }
     }
 
     public void SetHealth(int health)
@@ -61,6 +71,14 @@ public class UIManager : MonoBehaviour
         if (armorSlider)
         {
             armorSlider.value = armor;
+        }
+    }
+    public void SetGold(int gold)
+    {
+        if (goldText)
+        {
+            string text = "GOLD  " + gold.ToString();
+            goldText.text = text;
         }
     }
 }

@@ -21,6 +21,7 @@ public class PlayerInputScript : MonoBehaviour
     public bool inputGrenade { get; private set; }
     public bool inputFire { get; private set; }
     public bool inputFireUp { get; private set; }
+    public bool inputReset { get; private set; }
 
     // Start is called before the first frame update
     private void Start()
@@ -35,10 +36,11 @@ public class PlayerInputScript : MonoBehaviour
         inputHorizontal = Input.GetAxis(horizontalAxis);
         inputVertical = Input.GetAxisRaw(verticalAxis);
         inputInteract = Input.GetKeyDown(interactButton);
-        inputFire = Input.GetButton("Fire1");
-        inputFireUp = Input.GetButtonUp("Fire1");
-        inputDefenseDown = Input.GetKeyDown("q");
-        inputDefenseUp = Input.GetKeyUp("q");
-        inputGrenade = Input.GetKeyDown("g");
+        inputFire = Input.GetButton("Jump");
+        inputFireUp = Input.GetButtonUp("Jump");
+        inputDefenseDown = Input.GetKeyDown("z");
+        inputDefenseUp = Input.GetKeyUp("z");
+        inputGrenade = Input.GetKeyDown("x");
+        inputReset = Input.GetKeyDown("r");
     }
 }

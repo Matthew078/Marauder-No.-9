@@ -13,6 +13,7 @@ TagManager:
   - Wall
   - PlayerBullet
   - EnemyWeapon
+  - End
   layers:
   - Default
   - TransparentFX

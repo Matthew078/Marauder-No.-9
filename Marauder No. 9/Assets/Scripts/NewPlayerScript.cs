@@ -25,6 +25,8 @@ public class NewPlayerScript : MonoBehaviour
     [Header("Objects")]
     [SerializeField]
     private UIManager uiManager;
+    [SerializeField]
+    private GameManager gm;
 
     public PlayerInputScript pi { get { return playerInputScript; } }
     public GroundCheck gc { get { return groundCheck; } }
@@ -49,13 +51,17 @@ public class NewPlayerScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (rb.velocity.x > 1f)
+        if (pi.inputReset)
+        {
+            transform.position = new Vector3(23.5f, 19f, 4.5f);
+        }
+        if (rb.velocity.x > 1.5f)
         {
             shield1.SetActive(true);
             shield2.SetActive(false);
             transform.rotation = Quaternion.Euler(transform.rotation.x, 90, transform.rotation.z);
         }
-        else if (rb.velocity.x < -1f)
+        else if (rb.velocity.x < -1.5f)
         {
             shield1.SetActive(false);
             shield2.SetActive(true);
@@ -76,6 +82,7 @@ public class NewPlayerScript : MonoBehaviour
         }
 
         uiManager.SetHealth(health);
+        uiManager.SetGold(coins);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -91,6 +98,16 @@ public class NewPlayerScript : MonoBehaviour
             SoundManager.Instance.playSound("Player_Damage");
             health -= other.gameObject.GetComponent<BulletScript>().damage;
             Destroy(other.gameObject);
+            if (health <= 0)
+            {
+                gm.LoadLevel("Main");
+            }
+            
+        }
+
+        if(other.gameObject.tag == "End")
+        {
+            gm.NextLevel();
         }
     }
 
