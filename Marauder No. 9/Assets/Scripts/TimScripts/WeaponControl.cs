@@ -11,6 +11,10 @@ public class WeaponControl : MonoBehaviour
     private NewPlayerScript p;
     [SerializeField]
     private Rigidbody playerRB;
+    [SerializeField]
+    private GameObject wrist;
+        [SerializeField]
+    private GameObject body;
 
     private bool facingForwards;
 
@@ -36,6 +40,14 @@ public class WeaponControl : MonoBehaviour
         if (p.pi.inputInteract)
         {
             swapGun();
+        }
+        if (playerRB.velocity.x > 1.5f)
+        {
+            facingForwards = true;
+        }
+        else if (playerRB.velocity.x < -1.5f)
+        {
+            facingForwards = false;
         }
     }
 
@@ -71,12 +83,20 @@ public class WeaponControl : MonoBehaviour
     }
 
     private void pickUpGun(GameObject newGun)
-    {
-        //set new gun
+    {        //set new gun
         gun = newGun;
-        newGun.gameObject.transform.parent = p.gameObject.transform;
         gun.GetComponent<Rigidbody>().isKinematic = true;
-        gun.transform.position = this.transform.position + new Vector3(0, 0, 0);
-        gun.transform.rotation = this.transform.rotation;
+        newGun.gameObject.transform.parent = wrist.gameObject.transform;
+        if (facingForwards == true)
+        {
+            gun.transform.position = this.transform.position + new Vector3(0.3f, 0.05f, 0);
+            gun.transform.rotation = Quaternion.Euler(1.85f,85,0);
+        }
+        else
+        {
+            gun.transform.position = this.transform.position + new Vector3(-0.3f, 0.08f, 0);
+            gun.transform.rotation = Quaternion.Euler(1.85f,-90,0);
+        }
+        
     }
 }

@@ -48,6 +48,7 @@ public class TempEnemy : MonoBehaviour
         currentTarget = pointA;
         agent.destination = currentTarget.position;
         a.SetBool("isDead", false);
+        a.SetBool("isIdle", true);
     }
 
     // Update is called once per frame
@@ -120,6 +121,7 @@ public class TempEnemy : MonoBehaviour
 
     void patrol()
     {
+        a.SetBool("isIdle", false);
         agent.stoppingDistance = 0f;
         agent.speed = speed;
         if (agent.remainingDistance == 0 && currentTarget == pointB)
@@ -137,6 +139,7 @@ public class TempEnemy : MonoBehaviour
     
     void idle()
     {
+        a.SetBool("isIdle", true);
         agent.speed = 0;
         idleTimer += Time.deltaTime;
         if (idleTimer > idleDelay)
@@ -148,6 +151,7 @@ public class TempEnemy : MonoBehaviour
 
     void stunned()
     {
+        a.SetBool("isIdle", true);
         stunTimer += Time.deltaTime;
         if (stunTimer > stunDelay)
         {
