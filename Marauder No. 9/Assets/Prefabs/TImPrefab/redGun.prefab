@@ -112,9 +112,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 8075074341407092906, guid: 936db73c99a11ec4199758d27e5a3352, type: 3}
+  ammo: 30
   bulletBaseForce: 300
   bulletRange: 30
   fireRate: 1
+  damage: 10
+  type: 0
+  typeOnDeath: 0
+  ammoOnDeath: 20
+  damageOnDeath: 10
+  fireRateOnDeath: 0.25
+  burstAmount: 3
+  burstCount: 0
+  bursting: 0
 --- !u!54 &5822991853205767514
 Rigidbody:
   m_ObjectHideFlags: 0
