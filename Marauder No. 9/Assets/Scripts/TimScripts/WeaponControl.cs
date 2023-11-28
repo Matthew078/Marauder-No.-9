@@ -89,13 +89,13 @@ public class WeaponControl : MonoBehaviour
         newGun.gameObject.transform.parent = wrist.gameObject.transform;
         if (facingForwards == true)
         {
-            gun.transform.position = this.transform.position + new Vector3(0.3f, 0.05f, 0);
-            gun.transform.rotation = Quaternion.Euler(1.85f,85,0);
+            gun.transform.position = this.transform.position + new Vector3(0.3f, 0.12f, 0);
+            gun.transform.rotation = Quaternion.Euler(0,85,0);
         }
         else
         {
-            gun.transform.position = this.transform.position + new Vector3(-0.3f, 0.08f, 0);
-            gun.transform.rotation = Quaternion.Euler(1.85f,-90,0);
+            gun.transform.position = this.transform.position + new Vector3(-0.3f, 0.12f, 0);
+            gun.transform.rotation = Quaternion.Euler(0,-90,0);
         }
         
     }
