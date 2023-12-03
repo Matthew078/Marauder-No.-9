@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    // Fields
     [SerializeField]
     private PlayerScript p;
-
     Animator playerAnim;
+    
+    // Awake is called when an enabled script instance is being loaded
+    private void Awake()
+    {
+        // Reference PlayerScript for components
+    }
 
     // Start is called before the first frame update
     void Start()

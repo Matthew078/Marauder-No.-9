@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    // Fields
     [SerializeField] float smooth;
     [SerializeField] Vector3 maxPosition, minPosition;
-
     private Transform player;
     private Vector3 velocity;
-
     public Vector3 startPos;
 
 
@@ -19,15 +18,10 @@ public class CameraScript : MonoBehaviour
         player = GameObject.Find("Robot_Soldier_White").transform;
         velocity = Vector3.zero;
         transform.position = new Vector3(startPos.x, startPos.y, transform.position.z);
-        //Application.targetFrameRate = 5;
+        // Application.targetFrameRate = 60;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    // LateUpdate is called once per frame after Update
     void LateUpdate()
     {
         if (transform.position != player.transform.position)

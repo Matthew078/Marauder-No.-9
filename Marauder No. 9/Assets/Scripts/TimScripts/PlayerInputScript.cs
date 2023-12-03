@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerInputScript : MonoBehaviour
 {
+    // Fields
     [Header("Input Configurations")]
     [SerializeField]
     private string horizontalAxis = "Horizontal";
@@ -11,12 +12,10 @@ public class PlayerInputScript : MonoBehaviour
     private string verticalAxis = "Vertical";
     [SerializeField]
     private string interactButton = "e";
-
     public float inputHorizontal { get; private set; }
     public float inputVertical { get; private set; }
     public bool inputInteract { get; private set; }
     public bool inputDefenseDown { get; private set; }
-
     public bool inputDefenseUp { get; private set; }
     public bool inputGrenade { get; private set; }
     public bool inputFire { get; private set; }
