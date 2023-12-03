@@ -86,6 +86,7 @@ public class PlayerScript : MonoBehaviour
         uiManager.SetGold(coins);
     }
     // OnTriggerEnter is called when a GameObject collides with another GameObject
+    // @param other is the Collider from a GameObject this instance collided with
     private void OnTriggerEnter(Collider other)
     {
         // collect loot
