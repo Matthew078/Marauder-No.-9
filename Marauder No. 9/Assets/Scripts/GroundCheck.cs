@@ -7,7 +7,7 @@ public class GroundCheck : MonoBehaviour
     // fields
     private bool isGrounded;
 
-    // IsGrounded method @return isGrounded field  
+    // IsGrounded method will @return the isGrounded field  
     public bool IsGrounded() { 
         return isGrounded; 
     }
