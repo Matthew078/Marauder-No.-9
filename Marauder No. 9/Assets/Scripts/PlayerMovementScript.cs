@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovementScript : MonoBehaviour
 {
     [SerializeField]
-    private NewPlayerScript p;
+    private PlayerScript p;
     [SerializeField]
     private float speed = 5f;
     [Header("Jump Settings")]

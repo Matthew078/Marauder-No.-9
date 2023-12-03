@@ -8,7 +8,7 @@ public class ShieldScript : MonoBehaviour
     [SerializeField] private MeshRenderer shieldMesh;
     [SerializeField] private Material shieldMat;
     [SerializeField] private float regenRate = .25f;
-    [SerializeField] private NewPlayerScript p;
+    [SerializeField] private PlayerScript p;
     public List<GameObject> bullets = new List<GameObject>();
     //These Variables are only public for testing purposes
     public float shieldTimer;              //Time the shield has spent On, used for reflecting mechanic

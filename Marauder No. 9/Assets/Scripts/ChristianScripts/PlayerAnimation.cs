@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField]
-    private NewPlayerScript p;
+    private PlayerScript p;
 
     Animator playerAnim;
 

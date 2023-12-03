@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
-public class NewPlayerScript : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
+    // fields
     [Header("Player Scripts")]
     [SerializeField]
     private PlayerInputScript playerInputScript;
@@ -13,10 +15,6 @@ public class NewPlayerScript : MonoBehaviour
     private PlayerMovementScript playerMovementScript;
     [SerializeField]
     private GroundCheck groundCheck;
-    [SerializeField]
-    private GameObject shield1;
-    [SerializeField]
-    private GameObject shield2;
     [Header("Health Settings")]
     [SerializeField]
     private int health;
@@ -27,15 +25,15 @@ public class NewPlayerScript : MonoBehaviour
     private UIManager uiManager;
     [SerializeField]
     private GameManager gm;
-
+    [SerializeField]
+    private GameObject shield1;
+    [SerializeField]
+    private GameObject shield2;
     public PlayerInputScript pi { get { return playerInputScript; } }
     public GroundCheck gc { get { return groundCheck; } }
-    public Rigidbody rb { get; private set; }
-    public Animator a { get; private set; }
-    //components
-    
-    //public new Animation ;
-    // make input script seperate so main script carries game data info, make audio script too, put scripts into seperate game obj
+    public Rigidbody rb { get; private set; } // component
+    public Animator a { get; private set; } // component
+    // Awake is called when an enabled script instance is being loaded
     private void Awake()
     {
        rb = GetComponent<Rigidbody>();
@@ -51,23 +49,26 @@ public class NewPlayerScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // reset player
         if (pi.inputReset)
         {
             transform.position = new Vector3(23.5f, 19f, 4.5f);
         }
+        // face player right using front shield object
         if (rb.velocity.x > 1.5f)
         {
             shield1.SetActive(true);
             shield2.SetActive(false);
             transform.rotation = Quaternion.Euler(transform.rotation.x, 90, transform.rotation.z);
         }
+        // face player left using the back shield object 
         else if (rb.velocity.x < -1.5f)
         {
             shield1.SetActive(false);
             shield2.SetActive(true);
             transform.rotation = Quaternion.Euler(transform.rotation.x, 270, transform.rotation.z);
         }
-
+        // manage audio
         if (Mathf.Abs(playerInputScript.inputHorizontal) > .1f && groundCheck.IsGrounded())
         {
             SoundManager.Instance.playStateSound("Player_Walk");
@@ -80,19 +81,20 @@ public class NewPlayerScript : MonoBehaviour
         {
             SoundManager.Instance.stopStateSound();
         }
-
+        // manage ui
         uiManager.SetHealth(health);
         uiManager.SetGold(coins);
     }
-
+    // OnTriggerEnter is called when a GameObject collides with another GameObject
     private void OnTriggerEnter(Collider other)
     {
+        // collect loot
         if(other.gameObject.tag == "Loot")
         {
             Destroy(other.gameObject);
             coins += 1;
         }
-
+        // take damage from bullet
         if(other.gameObject.tag == "Bullet")
         {
             SoundManager.Instance.playSound("Player_Damage");
@@ -104,7 +106,7 @@ public class NewPlayerScript : MonoBehaviour
             }
             
         }
-
+        // level complete when the player reaches the end
         if(other.gameObject.tag == "End")
         {
             gm.NextLevel();

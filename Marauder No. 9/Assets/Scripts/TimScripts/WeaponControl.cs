@@ -8,7 +8,7 @@ public class WeaponControl : MonoBehaviour
     [SerializeField]
     private GameObject gun;
     [SerializeField]
-    private NewPlayerScript p;
+    private PlayerScript p;
     [SerializeField]
     private Rigidbody playerRB;
     [SerializeField]

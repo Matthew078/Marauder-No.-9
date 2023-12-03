@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScriptOld : MonoBehaviour
 {
     public float moveForce;
     public float jumpForce;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TempGrenadeThrow : MonoBehaviour
 {
-    [SerializeField] private NewPlayerScript p;
+    [SerializeField] private PlayerScript p;
     [SerializeField] private List<GameObject> grenade_list = new List<GameObject>();
     [SerializeField] private GameObject grenade;
     [SerializeField] private float throwForce = 100;
