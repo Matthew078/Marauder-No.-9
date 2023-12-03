@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
+    // Fields
     [SerializeField]
     private PlayerScript p;
     [SerializeField]
@@ -16,12 +17,12 @@ public class PlayerMovementScript : MonoBehaviour
     private float jumpMultiplier = 1f;
     [SerializeField]
     private float fallMultiplier = 1f;
-
     private bool canJump;
 
+    // Awake is called when an enabled script instance is being loaded
     private void Awake()
     {
-        
+        // Reference PlayerScript for components
     }
     // Start is called before the first frame update
     private void Start()
@@ -31,13 +32,14 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    
     private void Update()
     {
+        // Check if player is able to jump
         if (p.gc.IsGrounded() && p.pi.inputVertical > 0.1f)
         {
             canJump = true;
         }
+        // Check if player should freeze when firing weapon
         if (!p.gc.IsGrounded() && p.pi.inputFire)
         {
             p.rb.isKinematic = true;
@@ -48,12 +50,13 @@ public class PlayerMovementScript : MonoBehaviour
         }
     }
 
+    // FixedUpdate is called once per physics frame
     private void FixedUpdate()
     {
-        // movement mechanics
+        // Movement mechanics
         Vector3 velocity = new Vector3(p.pi.inputHorizontal * speed, p.rb.velocity.y, 0f);
         p.rb.velocity = velocity;
-        // jump mechanics       
+        // Jump mechanics       
         if (canJump)
         {
             SoundManager.Instance.playSound("Player_Jump");
@@ -65,5 +68,4 @@ public class PlayerMovementScript : MonoBehaviour
             p.rb.velocity -= new Vector3(0f, -Physics.gravity.y, 0f) * fallMultiplier * Time.deltaTime;
         }
     }
-    
 }

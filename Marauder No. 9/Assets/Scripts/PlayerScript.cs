@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    // fields
+    // Fields
     [Header("Player Scripts")]
     [SerializeField]
     private PlayerInputScript playerInputScript;
@@ -31,8 +31,9 @@ public class PlayerScript : MonoBehaviour
     private GameObject shield2;
     public PlayerInputScript pi { get { return playerInputScript; } }
     public GroundCheck gc { get { return groundCheck; } }
-    public Rigidbody rb { get; private set; } // component
-    public Animator a { get; private set; } // component
+    public Rigidbody rb { get; private set; } // Component
+    public Animator a { get; private set; } // Component
+
     // Awake is called when an enabled script instance is being loaded
     private void Awake()
     {
@@ -49,26 +50,26 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // reset player
+        // Reset player
         if (pi.inputReset)
         {
             transform.position = new Vector3(23.5f, 19f, 4.5f);
         }
-        // face player right using front shield object
+        // Face player right using front shield object
         if (rb.velocity.x > 1.5f)
         {
             shield1.SetActive(true);
             shield2.SetActive(false);
             transform.rotation = Quaternion.Euler(transform.rotation.x, 90, transform.rotation.z);
         }
-        // face player left using the back shield object 
+        // Face player left using the back shield object 
         else if (rb.velocity.x < -1.5f)
         {
             shield1.SetActive(false);
             shield2.SetActive(true);
             transform.rotation = Quaternion.Euler(transform.rotation.x, 270, transform.rotation.z);
         }
-        // manage audio
+        // Manage audio
         if (Mathf.Abs(playerInputScript.inputHorizontal) > .1f && groundCheck.IsGrounded())
         {
             SoundManager.Instance.playStateSound("Player_Walk");
@@ -81,7 +82,7 @@ public class PlayerScript : MonoBehaviour
         {
             SoundManager.Instance.stopStateSound();
         }
-        // manage ui
+        // Manage ui
         uiManager.SetHealth(health);
         uiManager.SetGold(coins);
     }
@@ -89,13 +90,13 @@ public class PlayerScript : MonoBehaviour
     // @param other is the Collider from a GameObject this instance collided with
     private void OnTriggerEnter(Collider other)
     {
-        // collect loot
+        // Collect loot
         if(other.gameObject.tag == "Loot")
         {
             Destroy(other.gameObject);
             coins += 1;
         }
-        // take damage from bullet
+        // Take damage from bullet
         if(other.gameObject.tag == "Bullet")
         {
             SoundManager.Instance.playSound("Player_Damage");
@@ -107,7 +108,7 @@ public class PlayerScript : MonoBehaviour
             }
             
         }
-        // level complete when the player reaches the end
+        // Level complete when the player reaches the end
         if(other.gameObject.tag == "End")
         {
             gm.NextLevel();
