@@ -224,6 +224,8 @@ MonoBehaviour:
   maxPosition: {x: 100, y: 100, z: 0}
   minPosition: {x: -100, y: -100, z: 0}
   startPos: {x: 24, y: 30, z: 0}
+  offset: 1
+  offsetSmoothing: 2
 --- !u!1001 &7951233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4007,12 +4009,12 @@ MonoBehaviour:
   playerInputScript: {fileID: 1061425928}
   playerMovementScript: {fileID: 1061425925}
   groundCheck: {fileID: 285414044}
-  shield1: {fileID: 0}
-  shield2: {fileID: 0}
   health: 0
   coins: 0
   uiManager: {fileID: 0}
   gm: {fileID: 0}
+  shield1: {fileID: 0}
+  shield2: {fileID: 0}
 --- !u!54 &277825820
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7552,7 +7554,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.05, z: 1}
+  m_Size: {x: 0.6, y: 0.05, z: 1}
   m_Center: {x: 0, y: -1, z: 0}
 --- !u!4 &620143630 stripped
 Transform:
@@ -9465,7 +9467,7 @@ GameObject:
   - component: {fileID: 853564165}
   m_Layer: 0
   m_Name: Plane (29)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10650,7 +10652,7 @@ GameObject:
   - component: {fileID: 930204695}
   m_Layer: 0
   m_Name: Plane (28)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21697,12 +21699,12 @@ MonoBehaviour:
   playerInputScript: {fileID: 200100476}
   playerMovementScript: {fileID: 200100475}
   groundCheck: {fileID: 605832364}
-  shield1: {fileID: 763153790}
-  shield2: {fileID: 455458953}
   health: 100
   coins: 0
   uiManager: {fileID: 1561338204}
   gm: {fileID: 1935612700}
+  shield1: {fileID: 763153790}
+  shield2: {fileID: 455458953}
 --- !u!54 &1945514043
 Rigidbody:
   m_ObjectHideFlags: 0
