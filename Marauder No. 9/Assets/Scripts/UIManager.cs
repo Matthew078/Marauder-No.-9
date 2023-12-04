@@ -6,6 +6,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    // Fields
     public TMP_Text healthText;
     public Slider healthSlider;
     public TMP_Text bulletText;
@@ -30,13 +31,8 @@ public class UIManager : MonoBehaviour
         SetHealth(5);
         //SetBullets(30);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    // SetBullets method will display the amount of bullets on the gui
+    // @param bullets is an int storing the amount of bullets
     public void SetBullets(int bullets)
     {
         if (bulletText)
@@ -45,7 +41,8 @@ public class UIManager : MonoBehaviour
             this.bulletText.text = text;
         }
     }
-
+    // SetHealth method will display the amount of health on the gui
+    // @param health is an int storing the amount of health points
     public void SetHealth(int health)
     {
         if (healthText)
@@ -59,7 +56,8 @@ public class UIManager : MonoBehaviour
             healthSlider.value = health;
         }
     }
-
+    // SetArmor method will display the amount of armor on the gui
+    // @param armor is a float storing the amount of armor hit points
     public void SetArmor(float armor)
     {
         if (armorText)
@@ -73,6 +71,8 @@ public class UIManager : MonoBehaviour
             armorSlider.value = armor;
         }
     }
+    // SetGold method will display the amount of gold on the gui
+    // @param gold is an int storing the amount of gold
     public void SetGold(int gold)
     {
         if (goldText)

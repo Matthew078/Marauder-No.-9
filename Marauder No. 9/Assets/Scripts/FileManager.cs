@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FileManager : MonoBehaviour
 {
+    // Fields
     [SerializeField]
     private GameManager gm;
     // Start is called before the first frame update
@@ -17,13 +18,14 @@ public class FileManager : MonoBehaviour
     {
         
     }
-
+    // SaveData will save the fields SFXVolume and MusicVolume in PlayerPrefs
     public void SaveDate()
     {
         PlayerPrefs.SetFloat("SFXVolume", gm.GetSFXVolume());
         PlayerPrefs.SetFloat("MusicVolume", gm.GetMusicVolume());
     }
-
+    // LoadData will load the the data from the file and store it
+    // the fields SFXVolume and MusicVolume
     public void LoadData()
     {
         if (PlayerPrefs.HasKey("SFXVolume") && PlayerPrefs.HasKey("MusicVolume"))

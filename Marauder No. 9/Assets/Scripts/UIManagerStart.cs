@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIManagerStart : MonoBehaviour
 {
+    // Fields
     [SerializeField]
     private Canvas canvasStart, canvasMain, canvasSettings, canvasCredits;
     [SerializeField]
@@ -34,7 +35,7 @@ public class UIManagerStart : MonoBehaviour
             gm.SetMusicVolume(musicSlider.value);
         }
     }
-
+    // StartMenu method will display the start menu
     public void StartMenu()
     {
         canvasStart.enabled = true;
@@ -47,7 +48,7 @@ public class UIManagerStart : MonoBehaviour
         SetEnabledOfChildren(canvasCredits, false);
         es.SetSelectedGameObject(canvasStart.transform.Find("Start").gameObject);
     }
-
+    // MainMenu method will display the main menu
     public void MainMenu()
     {
         canvasStart.enabled = false;
@@ -60,6 +61,7 @@ public class UIManagerStart : MonoBehaviour
         SetEnabledOfChildren(canvasCredits, false);
         es.SetSelectedGameObject(canvasMain.transform.Find("Play").gameObject);
     }
+    // SettingsMenu method will display the settings menu
     public void SettingsMenu()
     {
         canvasStart.enabled = false;
@@ -72,6 +74,7 @@ public class UIManagerStart : MonoBehaviour
         SetEnabledOfChildren(canvasCredits, false);
         es.SetSelectedGameObject(canvasSettings.transform.Find("SFXSlider").gameObject);
     }
+    // CreditsMenu method will display the credits menu
     public void CreditsMenu()
     {
         canvasStart.enabled = false;
@@ -84,12 +87,15 @@ public class UIManagerStart : MonoBehaviour
         SetEnabledOfChildren(canvasCredits, true);
         es.SetSelectedGameObject(canvasCredits.transform.Find("Back").gameObject);
     }
-
+    // StartGame method will start the game
     public void StartGame()
     {
         gm.StartGame();
     }
-
+    // SetEnabledOfChildren is a helper method that will enable the
+    // gui elements of a particular Canvas
+    // @param c is the Canvas
+    // @param b is a boolean that will enable or disable the elements
     private void SetEnabledOfChildren(Canvas c, bool b)
     {
         foreach (Transform child in c.transform)
@@ -111,8 +117,7 @@ public class UIManagerStart : MonoBehaviour
                 {
                     slider.value = gm.GetSFXVolume();
                 }
-            }
-            
+            }   
         }
     }
 }
