@@ -4184,7 +4184,7 @@ MonoBehaviour:
     ''Up Arrow Key'' - Jump
 
     ''E'' - Pickup
-    Gun
+    Gun/Hover (Midair)
 
     ''Space'' - Shoot
 
@@ -4220,8 +4220,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65
-  m_fontSizeBase: 65
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
