@@ -21,7 +21,7 @@ public class PlayerInputScript : MonoBehaviour
     public bool inputFire { get; private set; }
     public bool inputFireUp { get; private set; }
     public bool inputReset { get; private set; }
-
+    public bool inputHover { get; private set; }
     // Start is called before the first frame update
     private void Start()
     {
@@ -35,6 +35,7 @@ public class PlayerInputScript : MonoBehaviour
         inputHorizontal = Input.GetAxis(horizontalAxis);
         inputVertical = Input.GetAxisRaw(verticalAxis);
         inputInteract = Input.GetKeyDown(interactButton);
+        inputHover = Input.GetButton("Hover");
         inputFire = Input.GetButton("Jump");
         inputFireUp = Input.GetButtonUp("Jump");
         inputDefenseDown = Input.GetKeyDown("z");

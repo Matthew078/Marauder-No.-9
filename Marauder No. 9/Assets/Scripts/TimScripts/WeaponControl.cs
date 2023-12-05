@@ -15,19 +15,21 @@ public class WeaponControl : MonoBehaviour
     private GameObject wrist;
         [SerializeField]
     private GameObject body;
-
     private bool facingForwards;
+    private bool hasGun;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRB = p.gameObject.GetComponent<Rigidbody>();
+        p.a.SetBool("hasGun", false);
     }
 
     // Update is called once per frame
     void Update()
     {
         //player input
+        hasGun = p.a.GetBool("hasGun");
         if (p.pi.inputFire && gun)
         {
             gun.GetComponent<GunScript>().onClick(playerRB.velocity.x, "PlayerBullet");
@@ -42,6 +44,7 @@ public class WeaponControl : MonoBehaviour
         {
             swapGun();
         }
+
         if (playerRB.velocity.x > 1.5f)
         {
             facingForwards = true;
@@ -63,15 +66,30 @@ public class WeaponControl : MonoBehaviour
         int i = 0;
         while (i < colliders.Length)
         {
-            if (colliders[i].gameObject != gun.gameObject && colliders[i].gameObject.tag == "Weapon")
+            if (colliders[i].gameObject != gun.gameObject && colliders[i].gameObject.tag == "Weapon" && p.gc.IsGrounded())
             {
                 removeGun();
-                pickUpGun(colliders[i].gameObject);
+                if (hasGun == false)
+                {
+                    StartCoroutine(GunPickupTimer());
+                }
+                else
+                {
+                    pickUpGun(colliders[i].gameObject);
+                }
                 break;
             }
             i++;
         }
     }
+    private IEnumerator GunPickupTimer()
+    {
+        p.a.SetBool("hasGun", true);
+        yield return new WaitForSeconds(0.1f);
+        swapGun();
+    }
+
+
 
     //get rid of current gun
     private void removeGun()
@@ -87,19 +105,21 @@ public class WeaponControl : MonoBehaviour
     //sets gun object as player's current gun
     private void pickUpGun(GameObject newGun)
     {        //set new gun
-        gun = newGun;
-        gun.GetComponent<Rigidbody>().isKinematic = true;
-        newGun.gameObject.transform.parent = wrist.gameObject.transform;
-        if (facingForwards == true)
+        if (p.gc.IsGrounded())
         {
-            gun.transform.position = this.transform.position + new Vector3(0.3f, 0.12f, 0);
-            gun.transform.rotation = Quaternion.Euler(0,85,0);
+            gun = newGun;
+            gun.GetComponent<Rigidbody>().isKinematic = true;
+            newGun.gameObject.transform.parent = wrist.gameObject.transform;
+            if (facingForwards == true)
+            {
+                gun.transform.position = this.transform.position + new Vector3(0.3f, 0.12f, 0);
+                gun.transform.rotation = Quaternion.Euler(0,85,0);
+            }
+            else
+            {   
+                gun.transform.position = this.transform.position + new Vector3(-0.3f, 0.12f, 0);
+                gun.transform.rotation = Quaternion.Euler(0,-90,0);
+            }
         }
-        else
-        {
-            gun.transform.position = this.transform.position + new Vector3(-0.3f, 0.12f, 0);
-            gun.transform.rotation = Quaternion.Euler(0,-90,0);
-        }
-        
     }
 }

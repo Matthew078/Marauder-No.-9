@@ -31,7 +31,6 @@ public class JumpScript : MonoBehaviour
         {
             jump = true;
         }
-
         if (Input.GetKeyDown("h"))
         {
             rb.isKinematic = true;
@@ -54,7 +53,6 @@ public class JumpScript : MonoBehaviour
             {
                 rb.velocity -= new Vector3(0f, -Physics.gravity.y, 0f) * fallMultiplier * Time.deltaTime;
 
-            }
-           
+            }      
     }
 }
