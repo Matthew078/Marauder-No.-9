@@ -9,7 +9,7 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField]
     private PlayerScript p;
     [SerializeField]
-    private float speed = 5f;
+    public float speed = 5f;
     [Header("Jump Settings")]
     [SerializeField]
     private float jumpPower = 10f;

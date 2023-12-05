@@ -55,6 +55,16 @@ public class TempEnemy : MonoBehaviour
     void Update()
     {
         //Shoot Cooldown
+        if (agent.speed > 0.1f)
+        {
+            a.SetBool("isIdle", false);
+        }
+        if (agent.speed < 0.1f)
+        {
+            a.SetBool("isIdle", true);
+        }
+
+
         if (shootTimer < shootDelay)
         {
             shootTimer += Time.deltaTime;

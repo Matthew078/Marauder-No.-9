@@ -30,9 +30,11 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private GameObject shield2;
     public PlayerInputScript pi { get { return playerInputScript; } }
+    public PlayerMovementScript pm { get { return playerMovementScript; } }
     public GroundCheck gc { get { return groundCheck; } }
     public Rigidbody rb { get; private set; } // Component
     public Animator a { get; private set; } // Component
+    private float deathTimer;
 
     // Awake is called when an enabled script instance is being loaded
     private void Awake()
@@ -45,12 +47,20 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         shield2.SetActive(false);
+        deathTimer = 0f;
     }
 
     // Update is called once per frame
     private void Update()
     {
         // Reset player
+        if (health <= 0)
+        {
+            playerInputScript.enabled = false;
+            playerMovementScript.enabled = false;
+            health = 0;
+            die();
+        }
         if (pi.inputReset)
         {
             transform.position = new Vector3(23.5f, 19f, 4.5f);
@@ -74,7 +84,7 @@ public class PlayerScript : MonoBehaviour
         {
             SoundManager.Instance.playStateSound("Player_Walk");
         }
-        else if (playerInputScript.inputFire && !groundCheck.IsGrounded())
+        else if (playerInputScript.inputHover && !groundCheck.IsGrounded())
         {
             SoundManager.Instance.playStateSound("Hover");
         }
@@ -102,10 +112,6 @@ public class PlayerScript : MonoBehaviour
             SoundManager.Instance.playSound("Player_Damage");
             health -= other.gameObject.GetComponent<BulletScript>().damage;
             Destroy(other.gameObject);
-            if (health <= 0)
-            {
-                gm.LoadLevel("Main");
-            }
             
         }
         // Level complete when the player reaches the end
@@ -114,6 +120,16 @@ public class PlayerScript : MonoBehaviour
             gm.NextLevel();
         }
     }
-
-    
+    void die()
+    {
+        if (deathTimer < 2.7f)
+        {
+            a.SetBool("isDead", true);
+            deathTimer += Time.deltaTime;
+        }
+        else
+        {
+            gm.LoadLevel("Main");
+        }        
+    }
 }

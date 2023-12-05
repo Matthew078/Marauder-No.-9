@@ -59,7 +59,7 @@ public class WeaponControl : MonoBehaviour
     private void swapGun()
     {
         //get colliders of immediate vicinity
-        Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(1f, 2f, 1f));
+        Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(.3f, 2f, 1f));
         colliders = colliders.OrderBy(c => (transform.position - c.transform.position).sqrMagnitude).ToArray();  //order colliders by proximity
 
         //loop through all colliders of immediat vicinity
@@ -85,8 +85,8 @@ public class WeaponControl : MonoBehaviour
     private IEnumerator GunPickupTimer()
     {
         p.a.SetBool("hasGun", true);
-        yield return new WaitForSeconds(0.1f);
-        swapGun();
+        yield return new WaitForSeconds(0.13f);
+        swapGun();     
     }
 
 
